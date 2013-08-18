@@ -160,7 +160,7 @@
     <div data-role="content">
         Pain Management
 
-        <div onclick="medical.TopicCategories[0].Toggle()">
+        <div onclick="medical.ToggleTopic('Head','headTopic')">
             Head
         </div>
 
@@ -358,8 +358,54 @@
 
         clearSketch : function(){
             sigCapture.clear();
-        }
+        },
 
+        ToggleTopic : function( categoryName, topicName ){
+
+            var curCat = medical.GetCategory(categoryName);
+
+            if (curCat != null){
+
+                var curTopic = medical.GetTopic( curCat, topicName);
+
+                if (curTopic != null){
+                    curTopic.Toggle();
+                }
+
+                //refresh counts.
+                $("#bubblePainManagement").text( curCat.CategoryCount() );
+            }
+        },
+
+        GetCategory : function( categoryName ){
+            var curCat = null;
+
+            $.each(medical.TopicCategories, function(i, v) {
+                console.log("recursing cats:" + medical.TopicCategories[i].CategoryName);
+
+                if ( medical.TopicCategories[i].CategoryName == categoryName) {
+                    console.log("found cat:" + categoryName);
+                    curCat = medical.TopicCategories[i];
+                }
+            });
+
+            return curCat;
+        },
+
+        GetTopic : function ( category, topicName ){
+            var curTopic = null;
+
+            $.each(category.Topics, function(i, v) {
+                console.log("recursing topics:" + category.Topics[i].TopicId);
+
+                if ( category.Topics[i].TopicId == topicName) {
+                    console.log("found topic:" + topicName);
+                    curTopic = category.Topics[i];
+                }
+            });
+
+            return curTopic;
+        }
     };
 
     (function( $ ) {

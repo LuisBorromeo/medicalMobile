@@ -65,7 +65,7 @@ class TopicCategory implements iTopicCategory {
     Toggle(topicId :string){
 
         for (var i in this.Topics) {
-            console.log(this.Topics[i].TopicId)
+            //console.log(this.Topics[i].TopicId)
             if ( this.Topics[i].TopicId == topicId) {
                 console.log("found the topic");
 
