@@ -46,7 +46,6 @@
             vertical-align: middle;
         }
 
-        .countBubl {margin-top:-42px;margin-left:35px;color:#fff;padding:2px;}
 
         .badge {
             background: #BA070F;
@@ -58,6 +57,53 @@
             z-index: 999;
             border-radius: 1em;
             border: 3px solid #fff;
+        }
+
+        /*------------ pain management diagram topics --------------------*/
+        .anatomy {
+            background-image: url('img/outline_male.png')!important;
+            background-color: transparent!important;
+            background-attachment:scroll;
+            height: 600px;
+            /*background-size:100% 100%;*/
+
+        }
+
+        .topicLabel {
+            color:#000000;
+            /* border: 3px solid #000000; */
+            text-align: center;
+
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .headTopic{
+            position: relative;
+            right: -130px;
+            top: 30px;
+
+            width: 300px;
+            height: 50px;
+
+            border: 3px solid #000000;
+
+            text-align: center;
+            display: table;
+        }
+
+        .eyesTopic{
+            position: relative;
+            right: -225px;
+            top: 30px;
+
+            width: 110px;
+            height: 30px;
+
+            border: 3px solid #000000;
+
+            text-align: center;
+            display: table;
         }
     </style>
 </head>
@@ -160,8 +206,82 @@
     <div data-role="content">
         Pain Management
 
-        <div onclick="medical.ToggleTopic('Head','headTopic')">
-            Head
+
+
+        <div class="ui-grid-a">
+            <!--left grid column -->
+            <div class="ui-block-a anatomy">
+
+                <div class="headTopic" onclick="medical.toggleTopic('Head','headTopic')">
+                    <span class="topicLabel">Head</span>
+                </div>
+
+                <div class="eyesTopic" onclick="medical.toggleTopic('Head','eyesTopic')">
+                    <span class="topicLabel">eyes</span>
+                </div>
+
+            </div>
+
+            <!--right grid column-->
+            <div class="ui-block-b">
+
+
+                <div data-role="fieldcontain">
+                    <label for="slider1">
+                        Pain Level
+                    </label>
+                    <input id="slider1" type="range" name="slider" value="0" min="0" max="10"
+                           data-highlight="false">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="slider2">
+                        Pain Onset
+                    </label>
+                    <input id="slider2" type="range" name="slider" value="0" min="0" max="10"
+                           data-highlight="false">
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="PainType">
+                        Pain Type:
+                    </label>
+                    <select id="PainType" name="PainType" data-mini="true">
+                        <option value="Aching">
+                            Aching
+                        </option>
+                        <option value="Burning">
+                            Burning
+                        </option>
+                    </select>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="AggravatingFactors">
+                        Aggravating Factors:
+                    </label>
+                    <select id="AggravatingFactors" name="AggravatingFactors" data-mini="true">
+                        <option value="Breathing">
+                            Breathing
+                        </option>
+                        <option value="Talking">
+                            Talking
+                        </option>
+                    </select>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="AlleviatingFactors">
+                        Alleviating Factors:
+                    </label>
+                    <select id="AlleviatingFactors" name="AlleviatingFactors" data-mini="true">
+                        <option value="Cold Therapy">
+                            Cold Therapy
+                        </option>
+                        <option value="Cold Therapy">
+                            Heat Therapy
+                        </option>
+                    </select>
+                </div>
+
+
+            </div>
         </div>
 
 
@@ -360,13 +480,13 @@
             sigCapture.clear();
         },
 
-        ToggleTopic : function( categoryName, topicName ){
+        toggleTopic : function( categoryName, topicName ){
 
-            var curCat = medical.GetCategory(categoryName);
+            var curCat = medical.getCategory(categoryName);
 
             if (curCat != null){
 
-                var curTopic = medical.GetTopic( curCat, topicName);
+                var curTopic = medical.getTopic( curCat, topicName);
 
                 if (curTopic != null){
                     curTopic.Toggle();
@@ -377,7 +497,7 @@
             }
         },
 
-        GetCategory : function( categoryName ){
+        getCategory : function( categoryName ){
             var curCat = null;
 
             $.each(medical.TopicCategories, function(i, v) {
@@ -392,7 +512,7 @@
             return curCat;
         },
 
-        GetTopic : function ( category, topicName ){
+        getTopic : function ( category, topicName ){
             var curTopic = null;
 
             $.each(category.Topics, function(i, v) {
