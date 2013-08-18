@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <title></title>
+
+    <link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css">
+    <link rel="stylesheet" href="themes/blue.min.css" />
+
+    <!-- Extra Codiqa features -->
+    <link rel="stylesheet" href="css/codiqa.ext.css">
+    <link rel="stylesheet" href="css/SketchStyles.css">
+
+    <!-- jQuery and jQuery Mobile -->
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/jquery.mobile-1.3.1.min.js"></script>
+
+    <!-- Extra Codiqa features -->
+    <script src="js/codiqa.ext.js"></script>
+    <script src="js/LanguageDictionary.js"></script>
+
+    <style>
+
+        .bg {
+            background-image: url('img/ios_notification_bg_tile.jpg')!important;
+            background-color: transparent!important;
+            background-attachment:scroll;
+            /*background-size:100% 100%;*/
+        }
+
+        .ui-btn {
+            display: block;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            margin: .2em 0;
+            padding: 0;
+        }
+
+        .LanguageSwitchCont {
+            margin: .2em 0;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .countBubl {margin-top:-42px;margin-left:35px;color:#fff;padding:2px;}
+
+        .badge {
+            background: #BA070F;
+            color: #fff;
+            padding: 2px 7px;
+            position: relative;
+            right: 0px;
+            top: 0px;
+            z-index: 999;
+            border-radius: 1em;
+            border: 3px solid #fff;
+        }
+    </style>
+</head>
+<body>
+<!-- Home -->
+<div data-role="page" id="page1" data-theme="a" class="bg">
+    <div data-role="content">
+
+        <div data-role="fieldcontain">
+            <div class="ui-grid-b">
+                <div class="ui-block-a">
+                    <a data-role="button" href="#INeedPage" data-transition="slide">
+                        <span id="INeed">I Need</span>
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <a data-role="button" href="#PainManagementPage" data-transition="slide">
+                        <span id="PainManagement">Pain Management</span>
+                        <span id="bubblePainManagement" class='badge'>0</span>
+                    </a>
+                </div>
+                <div class="ui-block-c">
+                    <a data-role="button" href="#page1" data-transition="slide">
+                        <span id="CallForHelp">Call for Help</span>
+                    </a>
+                </div>
+                <div class="ui-block-a">
+                    <a data-role="button" href="#page1" data-transition="slide">
+                        <span id="Symptoms">Symptoms</span>
+                    </a>
+                </div>
+                <div id="btnKeyboard" class="ui-block-b">
+                    <a data-role="button" href="#KeyboardPage" data-transition="slide">
+                        <span id="Keyboard">Keyboard</span>
+                    </a>
+                </div>
+                <div class="ui-block-c">
+                    <a data-role="button" href="#SketchBoardPage" data-transition="slide">
+                        <span id="Sketchboard">Sketch Board</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="ui-grid-b">
+                <div class="ui-block-a">
+                    <a data-role="button" href="#page1" onclick="playaudio('/android_asset/www/audio/button-9.mp3')">
+                        <span id="Yes">Yes</span>
+                    </a>
+                </div>
+                <div class="ui-block-b">
+                    <a data-role="button" href="#page1">
+                        <span id="No">No</span>
+                    </a>
+                </div>
+                <div class="ui-block-c">
+                    <div class="LanguageSwitchCont">
+                        <br>
+                        <select name="spanishToggle" id="spanishToggle" data-theme="" data-role="slider">
+                            <option value="off">
+                                English
+                            </option>
+                            <option value="on">
+                                Spanish
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- INeed -->
+<div data-role="page" id="INeedPage" data-theme="a" class="bg">
+    <div data-role="content">
+        I Need
+
+        <div data-theme="a" data-role="footer" data-position="fixed">
+
+            <div data-role="navbar" data-iconpos="left">
+                <ul>
+                    <li>
+                        <a href="#page1" data-transition="slide" data-theme="" data-icon="home">
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<!-- PainManagement -->
+<div data-role="page" id="PainManagementPage" data-theme="a" class="bg">
+    <div data-role="content">
+        Pain Management
+
+        <div onclick="medical.TopicCategories[0].Toggle()">
+            Head
+        </div>
+
+
+
+
+
+
+
+        <div data-theme="a" data-role="footer" data-position="fixed">
+
+            <div data-role="navbar" data-iconpos="left">
+                <ul>
+                    <li>
+                        <a href="#page1" data-transition="slide" data-theme="" data-icon="home">
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Keyboard -->
+<div data-role="page" id="KeyboardPage" data-theme="a" class="bg">
+    <div data-role="content">
+        <div  data-role="fieldcontain">
+            <textarea  id="txtKeyboard" placeholder=""></textarea>
+        </div>
+
+
+        <div class="ui-block-a">
+            <a id="btnClearKeyboardText" data-role="button">
+                <span id="ClearText">Clear</span>
+            </a>
+        </div>
+
+        <div data-theme="a" data-role="footer" data-position="fixed">
+
+            <div data-role="navbar" data-iconpos="left">
+                <ul>
+                    <li>
+                        <a href="#page1" data-transition="slide" data-theme="" data-icon="home">
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Sketch board -->
+<div data-role="page" id="SketchBoardPage" data-theme="a" class="bg">
+    <div data-role="content">
+
+        <div id="canvasContainer" >
+            <canvas id="signature" height="600"/>
+        </div>
+
+        <div class="ui-block-a">
+            <a id="btnReset" data-role="button">
+                <span id="Reset">Reset</span>
+            </a>
+        </div>
+
+        <div data-theme="a" data-role="footer" data-position="fixed">
+
+            <div data-role="navbar" data-iconpos="left">
+                <ul>
+                    <li>
+                        <a href="#page1" data-transition="slide" data-theme="" data-icon="home">
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<audio id="soundHandle" style="display: none;" />
+
+
+<script type="text/javascript" src="phonegap.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script src="js/modernizr.custom.34982.js"></script>
+<script src="js/signatureCapture.js"></script>
+<script src="js/Topic.js"></script>
+<script>
+    var sigCapture = null;
+    //var buttonSound = null;
+
+    var medical = {
+        init : function(){
+            console.log("init fired");
+
+            //---------------------- Set Topic Categories ------------------
+            medical.TopicCategories[0]  = new TopicCategory( "Head", "blah" );
+            medical.TopicCategories[0].AddTopic( new Topic("headTopic") );
+            medical.TopicCategories[0].AddTopic( new Topic("eyesTopic") );
+            medical.TopicCategories[0].AddTopic( new Topic("earsTopic") );
+
+
+            //---------------------- register events -----------------------
+            $( "#spanishToggle" ).bind( "change", function(event, ui) {
+                console.log("Spanish " + event.target.value);
+
+                if (event.target.value == "on"){
+                    medical.parseLanguage("spanish");
+                } else {
+                    medical.parseLanguage("english");
+                }
+
+            });
+
+
+            //event : entering the keyboard page
+            $( document ).on( "pageinit", "#KeyboardPage", function( event ) {
+                console.log("focus...");
+
+            });
+
+            //event : entering the sketch page
+            $( document ).on( "pageinit", "#SketchBoardPage", function( event ) {
+                /*
+                 if (sigCapture == null){
+                 sigCapture = new SignatureCapture( "signature" );
+                 }
+                 */
+            });
+
+            //global button handler. Fires for all buttons
+            $( document ).on( "click", ".ui-btn", function( event, ui ) {
+                console.log("button click");
+
+                /*
+                 jQuery play sound.
+                 var soundHandle = document.getElementById('soundHandle');
+                 soundHandle.src = 'button-9.mp3';
+                 soundHandle.play();
+                 */
+
+                //var my_media = new Media("/android_asset/www/button-9.mp3");
+                //my_media.play();
+            });
+
+
+            //Specific buttons
+            $( document ).on( "click", "#btnReset", function( event, ui ) {
+                medical.clearSketch();
+            });
+
+            $( document ).on( "click", "#btnClearKeyboardText", function( event, ui ) {
+                medical.clearKeyboardText();
+            });
+
+
+            //buttonSound = new Media("/www/button-9.mp3", function(){}, function(){});
+            //buttonSound.play();
+
+        },
+
+        /*------------------ Initialize Properties ------------------*/
+
+        TopicCategories: [],
+
+        /*------------------ Methods ------------------*/
+
+        parseLanguage : function( languageName ){
+            console.log("parsing language");
+
+            $.each(dictionary, function(i, v) {
+                if (v.Language == languageName) {
+                    var targetSpan = $("#" + v.Key);
+                    targetSpan.text( v.Text );
+                }
+            });
+
+        },
+
+        clearKeyboardText : function(){
+            $("#txtKeyboard").val('').select();
+        },
+
+        clearSketch : function(){
+            sigCapture.clear();
+        }
+
+    };
+
+    (function( $ ) {
+
+        $(document).ready(function(){
+            medical.init();
+
+            //signature
+            sigCapture = new SignatureCapture( "signature" );
+
+            /*
+            //Topics
+            var headTopic = new Topic("headTopic");
+            var eyesTopic = new Topic("eyesTopic");
+            var earsTopic = new Topic("earsTopic");
+
+            var headCategory = new TopicCategory( "Head", "blah" );
+            headCategory.AddTopic( headTopic );
+            headCategory.AddTopic( eyesTopic );
+            headCategory.AddTopic( earsTopic );
+
+            //from button
+            headCategory.Toggle("headTopic");
+            //headCategory.Toggle("eyesTopic");
+            headCategory.Toggle("earsTopic");
+
+            //Update the Count bubble
+            //console.log(headCategory.CategoryName + ":" + headCategory.CategoryCount() );
+
+            $("#bubblePainManagement").text( headCategory.CategoryCount() );
+            */
+        });
+
+    })( jQuery );
+
+</script>
+<script type="text/javascript">
+    app.initialize();
+</script>
+
+</body>
+</html>
+
+
