@@ -8,7 +8,7 @@
     <title></title>
 
     <link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css">
-    <link rel="stylesheet" href="themes/blue.min.css" />
+    <!--<link rel="stylesheet" href="themes/blue.min.css" />-->
 
     <!-- Extra Codiqa features -->
     <link rel="stylesheet" href="css/codiqa.ext.css">
@@ -31,13 +31,16 @@
             /*background-size:100% 100%;*/
         }
 
+
         .ui-btn {
             display: block;
             text-align: center;
             cursor: pointer;
             position: relative;
-            margin: .2em 0;
+            margin: .3em 0;
             padding: 0;
+            height: 110px;
+            line-height: 90px;
         }
 
         .LanguageSwitchCont {
@@ -59,15 +62,36 @@
             border: 3px solid #fff;
         }
 
+        .mainMenu {
+            display: inline-block;
+            text-align: left;
+            cursor: pointer;
+            position: relative;
+            margin: 1em 0;
+            padding: 10;
+            height: 50px;
+            line-height: 30px;
+        }
+
         /*------------ pain management diagram topics --------------------*/
         .anatomy {
             background-image: url('img/outline_male.png')!important;
-            background-color: transparent!important;
-            background-attachment:scroll;
+            background-color: transparent;
+            /*background-attachment:scroll;*/
             height: 600px;
             /*background-size:100% 100%;*/
-
+            border-radius: 10px;
         }
+
+        .painSummary {
+            background-color: transparent;
+            /*background-attachment:scroll;*/
+            height: 600px;
+            /*background-size:100% 100%;*/
+            border-radius: 10px;
+            padding:12px;
+        }
+
 
         .topicLabel {
             color:#000000;
@@ -104,6 +128,22 @@
 
             text-align: center;
             display: table;
+        }
+        .leftArmTopic{
+            position: relative;
+            right: -55px;
+            top: 160px;
+
+            width: 110px;
+            height: 400px;
+
+            border: 3px solid #000000;
+
+            text-align: center;
+            display: table;
+        }
+        .btnINeed{
+            color: #ff0000;
         }
     </style>
 </head>
@@ -181,32 +221,83 @@
 <!-- INeed -->
 <div data-role="page" id="INeedPage" data-theme="a" class="bg">
     <div data-role="content">
-        I Need
 
-        <div data-theme="a" data-role="footer" data-position="fixed">
+            <div data-role="controlgroup" id="INeedControlGroup" data-type="horizontal"></div>
 
-            <div data-role="navbar" data-iconpos="left">
-                <ul>
-                    <li>
-                        <a href="#page1" data-transition="slide" data-theme="" data-icon="home">
-
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-
+            <a href="#" id="icon00" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
+                Add Me 1(append)
+            </a>
+            <a href="#" id="icon01" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
+                Add Me 2(append)
+            </a>
     </div>
 </div>
 
 <!-- PainManagement -->
 <div data-role="page" id="PainManagementPage" data-theme="a" class="bg">
-    <div data-role="content">
+
+
+    <div data-role="panel" id="addPainTopicPanel" data-position="right" data-display="overlay" class="ui-panel ui-panel-position-right ui-panel-display-overlay ui-body-a ui-panel-animate ui-panel-closed">
+
+        <div data-role="fieldcontain">
+            <label for="slider1">
+                Pain Level
+            </label>
+            <input id="slider1" type="range" name="slider" value="0" min="0" max="10"
+                   data-highlight="false">
+        </div>
+        <div data-role="fieldcontain">
+            <label for="slider2">
+                Pain Onset
+            </label>
+            <input id="slider2" type="range" name="slider" value="0" min="0" max="10"
+                   data-highlight="false">
+        </div>
+        <div data-role="fieldcontain">
+            <label for="PainType">
+                Pain Type:
+            </label>
+            <select id="PainType" name="PainType" data-mini="true">
+                <option value="Aching">
+                    Aching
+                </option>
+                <option value="Burning">
+                    Burning
+                </option>
+            </select>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="AggravatingFactors">
+                Aggravating Factors:
+            </label>
+            <select id="AggravatingFactors" name="AggravatingFactors" data-mini="true">
+                <option value="Breathing">
+                    Breathing
+                </option>
+                <option value="Talking">
+                    Talking
+                </option>
+            </select>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="AlleviatingFactors">
+                Alleviating Factors:
+            </label>
+            <select id="AlleviatingFactors" name="AlleviatingFactors" data-mini="true">
+                <option value="Cold Therapy">
+                    Cold Therapy
+                </option>
+                <option value="Cold Therapy">
+                    Heat Therapy
+                </option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <div data-role="content" class="bg">
         Pain Management
-
-
 
         <div class="ui-grid-a">
             <!--left grid column -->
@@ -220,90 +311,27 @@
                     <span class="topicLabel">eyes</span>
                 </div>
 
+                <div class="leftArmTopic" onclick="medical.toggleTopic('Head','eyesTopic')">
+                    <a href="#addPainTopicPanel">
+                        <span class="topicLabel">left arm</span>
+                    </a>
+                </div>
+
             </div>
 
             <!--right grid column-->
-            <div class="ui-block-b">
+            <div class="ui-block-b painSummary">
 
 
-                <div data-role="fieldcontain">
-                    <label for="slider1">
-                        Pain Level
-                    </label>
-                    <input id="slider1" type="range" name="slider" value="0" min="0" max="10"
-                           data-highlight="false">
-                </div>
-                <div data-role="fieldcontain">
-                    <label for="slider2">
-                        Pain Onset
-                    </label>
-                    <input id="slider2" type="range" name="slider" value="0" min="0" max="10"
-                           data-highlight="false">
-                </div>
-                <div data-role="fieldcontain">
-                    <label for="PainType">
-                        Pain Type:
-                    </label>
-                    <select id="PainType" name="PainType" data-mini="true">
-                        <option value="Aching">
-                            Aching
-                        </option>
-                        <option value="Burning">
-                            Burning
-                        </option>
-                    </select>
-                </div>
-                <div data-role="fieldcontain">
-                    <label for="AggravatingFactors">
-                        Aggravating Factors:
-                    </label>
-                    <select id="AggravatingFactors" name="AggravatingFactors" data-mini="true">
-                        <option value="Breathing">
-                            Breathing
-                        </option>
-                        <option value="Talking">
-                            Talking
-                        </option>
-                    </select>
-                </div>
-                <div data-role="fieldcontain">
-                    <label for="AlleviatingFactors">
-                        Alleviating Factors:
-                    </label>
-                    <select id="AlleviatingFactors" name="AlleviatingFactors" data-mini="true">
-                        <option value="Cold Therapy">
-                            Cold Therapy
-                        </option>
-                        <option value="Cold Therapy">
-                            Heat Therapy
-                        </option>
-                    </select>
-                </div>
+                Summary of pain here
 
 
             </div>
         </div>
 
-
-
-
-
-
-
-        <div data-theme="a" data-role="footer" data-position="fixed">
-
-            <div data-role="navbar" data-iconpos="left">
-                <ul>
-                    <li>
-                        <a href="#page1" data-transition="slide" data-theme="" data-icon="home">
-
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
+        <a data-role="button" href="#page1" data-transition="slide" class="mainMenu">
+            Main Menu
+        </a>
 
     </div>
 </div>
@@ -438,6 +466,13 @@
                 //my_media.play();
             });
 
+            //icon buttons with css class btnINeed assigned to them
+            $( document ).on( "click", ".btnINeed", function( event, ui ) {
+                console.log("I need icon clicked");
+
+
+                medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup") );
+            });
 
             //Specific buttons
             $( document ).on( "click", "#btnReset", function( event, ui ) {
@@ -459,6 +494,14 @@
         TopicCategories: [],
 
         /*------------------ Methods ------------------*/
+
+         moveToControlGroup: function (sourceElement, targetElement){
+
+             var targetControlGroup = targetElement.controlgroup( "container");
+             targetControlGroup.append( sourceElement );
+
+             targetElement.controlgroup( "refresh" );
+         },
 
         parseLanguage : function( languageName ){
             console.log("parsing language");
@@ -536,27 +579,6 @@
             //signature
             sigCapture = new SignatureCapture( "signature" );
 
-            /*
-            //Topics
-            var headTopic = new Topic("headTopic");
-            var eyesTopic = new Topic("eyesTopic");
-            var earsTopic = new Topic("earsTopic");
-
-            var headCategory = new TopicCategory( "Head", "blah" );
-            headCategory.AddTopic( headTopic );
-            headCategory.AddTopic( eyesTopic );
-            headCategory.AddTopic( earsTopic );
-
-            //from button
-            headCategory.Toggle("headTopic");
-            //headCategory.Toggle("eyesTopic");
-            headCategory.Toggle("earsTopic");
-
-            //Update the Count bubble
-            //console.log(headCategory.CategoryName + ":" + headCategory.CategoryCount() );
-
-            $("#bubblePainManagement").text( headCategory.CategoryCount() );
-            */
         });
 
     })( jQuery );
