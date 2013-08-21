@@ -145,6 +145,14 @@
         .btnINeed{
             color: #ff0000;
         }
+
+        .yesNoCont{
+            border: solid;
+            border-width: 50px;
+
+
+        }
+
     </style>
 </head>
 <body>
@@ -187,7 +195,7 @@
                 </div>
             </div>
 
-            <div class="ui-grid-b">
+            <div class="ui-grid-b yesNoCont">
                 <div class="ui-block-a">
                     <a data-role="button" href="#page1" onclick="playaudio('/android_asset/www/audio/button-9.mp3')">
                         <span id="Yes">Yes</span>
@@ -224,12 +232,14 @@
 
             <div data-role="controlgroup" id="INeedControlGroup" data-type="horizontal"></div>
 
-            <a href="#" id="icon00" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
-                Add Me 1(append)
-            </a>
-            <a href="#" id="icon01" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
-                Add Me 2(append)
-            </a>
+            <div id="INeedIcons">
+                <a href="#" id="icon00" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
+                    Add Me 1(append)
+                </a>
+                <a href="#" id="icon01" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
+                    Add Me 2(append)
+                </a>
+            </div>
     </div>
 </div>
 
@@ -497,8 +507,17 @@
 
          moveToControlGroup: function (sourceElement, targetElement){
 
-             var targetControlGroup = targetElement.controlgroup( "container");
-             targetControlGroup.append( sourceElement );
+             var srcParentId = $(sourceElement).parent().parent()[0].id;
+
+             if (srcParentId == 'INeedControlGroup'){
+
+                 $("#INeedIcons").append(sourceElement);
+
+             } else {
+
+                 var targetControlGroup = targetElement.controlgroup( "container");
+                 targetControlGroup.append( sourceElement );
+             }
 
              targetElement.controlgroup( "refresh" );
          },
