@@ -143,14 +143,24 @@
             display: table;
         }
         .btnINeed{
+            display: inline-block;
             color: #ff0000;
+            width: 150px;
+            margin: 3px;
         }
 
         .yesNoCont{
+            /*
             border: solid;
             border-width: 50px;
+            */
 
+        }
 
+        .controlGroupContainer{
+            border-radius: 10px;
+            margin: .3em 0;
+            height: 140px;
         }
 
     </style>
@@ -165,6 +175,7 @@
                 <div class="ui-block-a">
                     <a data-role="button" href="#INeedPage" data-transition="slide">
                         <span id="INeed">I Need</span>
+                        <span id="bubbleINeed" class='badge'>0</span>
                     </a>
                 </div>
                 <div class="ui-block-b">
@@ -181,6 +192,7 @@
                 <div class="ui-block-a">
                     <a data-role="button" href="#page1" data-transition="slide">
                         <span id="Symptoms">Symptoms</span>
+                        <span id="bubbleSymptoms" class='badge'>0</span>
                     </a>
                 </div>
                 <div id="btnKeyboard" class="ui-block-b">
@@ -229,15 +241,22 @@
 <!-- INeed -->
 <div data-role="page" id="INeedPage" data-theme="a" class="bg">
     <div data-role="content">
-
-            <div data-role="controlgroup" id="INeedControlGroup" data-type="horizontal"></div>
+            <div class="controlGroupContainer">
+                <div data-role="controlgroup" id="INeedControlGroup" data-type="horizontal"></div>
+            </div>
 
             <div id="INeedIcons">
                 <a href="#" id="icon00" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
-                    Add Me 1(append)
+                    <img src="icon.png">
                 </a>
                 <a href="#" id="icon01" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
-                    Add Me 2(append)
+                    ico 01
+                </a>
+                <a href="#" id="icon02" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
+                    ico 02
+                </a>
+                <a href="#" id="icon03" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
+                    ico 03
                 </a>
             </div>
     </div>
@@ -480,8 +499,11 @@
             $( document ).on( "click", ".btnINeed", function( event, ui ) {
                 console.log("I need icon clicked");
 
+                medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup"), $("#INeedIcons") );
+                var bubbleCount = $(".ui-controlgroup-controls").children().length;
 
-                medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup") );
+                $("#bubbleINeed").text(bubbleCount);
+
             });
 
             //Specific buttons
@@ -505,21 +527,35 @@
 
         /*------------------ Methods ------------------*/
 
-         moveToControlGroup: function (sourceElement, targetElement){
+         moveToControlGroup: function (sourceElement, startElement, destinationElement){
 
              var srcParentId = $(sourceElement).parent().parent()[0].id;
+             var targetElement1Id = $(startElement)[0].id;
 
-             if (srcParentId == 'INeedControlGroup'){
+             if (srcParentId == targetElement1Id){
 
-                 $("#INeedIcons").append(sourceElement);
+                 var cg = destinationElement.find(".ui-controlgroup-controls");
+
+                 if (cg.length > 0) {
+                     cg.append(sourceElement);
+                     destinationElement.controlgroup( "refresh" );
+                 } else {
+                     destinationElement.append(sourceElement);
+                 }
 
              } else {
 
-                 var targetControlGroup = targetElement.controlgroup( "container");
-                 targetControlGroup.append( sourceElement );
-             }
+                 var cg = startElement.find(".ui-controlgroup-controls");
 
-             targetElement.controlgroup( "refresh" );
+                 if (cg.length > 0) {
+                     cg.append(sourceElement);
+                     startElement.controlgroup( "refresh" );
+
+                 } else {
+                     startElement.append(sourceElement);
+                 }
+
+             }
          },
 
         parseLanguage : function( languageName ){
