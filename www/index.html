@@ -148,6 +148,12 @@
             width: 150px;
             margin: 3px;
         }
+        .btnSymptoms{
+            display: inline-block;
+            color: #ff0000;
+            width: 150px;
+            margin: 3px;
+        }
 
         .yesNoCont{
             /*
@@ -190,7 +196,7 @@
                     </a>
                 </div>
                 <div class="ui-block-a">
-                    <a data-role="button" href="#page1" data-transition="slide">
+                    <a data-role="button" href="#SymptomsPage" data-transition="slide">
                         <span id="Symptoms">Symptoms</span>
                         <span id="bubbleSymptoms" class='badge'>0</span>
                     </a>
@@ -242,7 +248,7 @@
 <div data-role="page" id="INeedPage" data-theme="a" class="bg">
     <div data-role="content">
             <div class="controlGroupContainer">
-                <div data-role="controlgroup" id="INeedControlGroup" data-type="horizontal"></div>
+                <div id="INeedControlGroup" data-role="controlgroup" data-type="horizontal"></div>
             </div>
 
             <div id="INeedIcons">
@@ -256,6 +262,30 @@
                     ico 02
                 </a>
                 <a href="#" id="icon03" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
+                    ico 03
+                </a>
+            </div>
+    </div>
+</div>
+
+<!-- Symptoms -->
+<div data-role="page" id="SymptomsPage" data-theme="a" class="bg">
+    <div data-role="content">
+            <div class="controlGroupContainer">
+                <div id="SymptomsControlGroup" data-role="controlgroup"  data-type="horizontal"></div>
+            </div>
+
+            <div id="SymptomsIcons">
+                <a href="#" id="icon00" class="btnSymptoms" data-role="button" data-corners="true" data-inline="true">
+                    <img src="icon.png">
+                </a>
+                <a href="#" id="icon01" class="btnSymptoms" data-role="button" data-corners="true" data-inline="true">
+                    ico 01
+                </a>
+                <a href="#" id="icon02" class="btnSymptoms" data-role="button" data-corners="true" data-inline="true">
+                    ico 02
+                </a>
+                <a href="#" id="icon03" class="btnSymptoms" data-role="button" data-corners="true" data-inline="true">
                     ico 03
                 </a>
             </div>
@@ -451,6 +481,10 @@
             medical.TopicCategories[0].AddTopic( new Topic("eyesTopic") );
             medical.TopicCategories[0].AddTopic( new Topic("earsTopic") );
 
+            //---------------------- Init button count bubbles  ------------
+            medical.updateBubbleCount( $("#bubbleINeed"), 0 );
+            medical.updateBubbleCount( $("#bubbleSymptoms"), 0 );
+
 
             //---------------------- register events -----------------------
             $( "#spanishToggle" ).bind( "change", function(event, ui) {
@@ -463,7 +497,6 @@
                 }
 
             });
-
 
             //event : entering the keyboard page
             $( document ).on( "pageinit", "#KeyboardPage", function( event ) {
@@ -500,10 +533,19 @@
                 console.log("I need icon clicked");
 
                 medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup"), $("#INeedIcons") );
-                var bubbleCount = $(".ui-controlgroup-controls").children().length;
 
-                $("#bubbleINeed").text(bubbleCount);
+                var bubbleCount = $("#INeedControlGroup > .ui-controlgroup-controls").children().length;
+                medical.updateBubbleCount( $("#bubbleINeed"), bubbleCount );
+            });
 
+            //icon buttons with css class btnINeed assigned to them
+            $( document ).on( "click", ".btnSymptoms", function( event, ui ) {
+                console.log("Symptoms icon clicked");
+
+                medical.moveToControlGroup(event.currentTarget, $("#SymptomsControlGroup"), $("#SymptomsIcons") );
+
+                var bubbleCount = $("#SymptomsControlGroup > .ui-controlgroup-controls").children().length;
+                medical.updateBubbleCount( $("#bubbleSymptoms"), bubbleCount );
             });
 
             //Specific buttons
@@ -527,7 +569,22 @@
 
         /*------------------ Methods ------------------*/
 
-         moveToControlGroup: function (sourceElement, startElement, destinationElement){
+        updateBubbleCount: function( bubbleElement, itemCount ){
+
+            if (itemCount > 0){
+                bubbleElement.text(itemCount);
+
+                //show bubble
+                bubbleElement.show();
+
+            } else {
+                //hide bubble
+                bubbleElement.hide();
+            }
+
+        },
+
+        moveToControlGroup: function (sourceElement, startElement, destinationElement){
 
              var srcParentId = $(sourceElement).parent().parent()[0].id;
              var targetElement1Id = $(startElement)[0].id;
