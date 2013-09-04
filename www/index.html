@@ -120,7 +120,8 @@
 
 
         .topicLabel {
-            color:#ffffff;
+            font-size: 36px;
+            color:#3373a5;
             /* border: 3px solid #000000; */
             text-align: center;
 
@@ -130,15 +131,15 @@
 
         .headTopic{
             position: relative;
-            right: -5px;
-            top: 160px;
+            right: -30px;
+            top: 132px;
 
-            width: 110px;
-            height: 120px;
+            width: 200px;
+            height: 200px;
 
-            opacity:0.7;
+            opacity:0.9;
 
-            /*border: 3px solid #000000;*/
+            border: 3px solid #000000;
 
             display: table-cell;
             vertical-align: middle;
@@ -179,7 +180,24 @@
             height: 140px;
         }
 
-        /*------------- anotomy button style -------------*/
+        /*------------- anatomy button style -------------*/
+
+        .circle {
+            background: #ff0000;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .circleDashed {
+            border: 1em dotted #3373a5;/*#235EA4;*/
+            padding: 2em;
+            height: 7em;
+            width: 7em;
+            border-radius: 7em;
+            text-align: center;
+            margin: 2em auto 0;
+        }
 
         .topicButton {
 
@@ -232,6 +250,7 @@
         }
 
         .rotate {
+            display:inline-block;
             -webkit-transform: rotate(-90deg);
             -moz-transform: rotate(-90deg);
             -ms-transform: rotate(-90deg);
@@ -441,8 +460,8 @@
 
         <div id="front" class="frontAnatomy">
 
-            <div class="headTopic" onclick="medical.toggleTopic('FrontBody','headTopic')">
-                <a href="#addPainTopicPanel" class="topicButton rotate">Head</a>
+            <div class="headTopic circleDashed" onclick="medical.toggleTopic('FrontBody','headTopic')">
+                <a href="#addPainTopicPanel"><span class="topicLabel rotate">Head</span></a>
             </div>
 
         </div>
