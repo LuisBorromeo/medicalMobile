@@ -147,6 +147,23 @@
             text-align: center;
         }
 
+        .upperBackCircle{
+            position: relative;
+            right: -230px;
+            top: 132px;
+
+            width: 200px;
+            height: 200px;
+
+            opacity:0.9;
+
+            border: 3px solid #000000;
+
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
         #PainManagementSummary {
             color: #ff0000;
             margin: 3px;
@@ -531,7 +548,13 @@
     <div data-role="content" class="bg">
         Pain Management
 
-        <div id="front" class="backAnatomy">
+        <div id="back" class="backAnatomy">
+
+            <a href="javascript:medical.setSelectedCircle('upperBackCircle', 'BackBody', 'upperBackTopic')">
+                <div id="upperBackCircle" class="upperBackCircle circleDashed">
+                    <span class="topicLabel rotate">Upper Back</span>
+                </div>
+            </a>
 
         </div>
 
@@ -687,7 +710,7 @@
             medical.TopicCategories[0].AddTopic( new Topic("headTopic") );
 
             medical.TopicCategories[1]  = new TopicCategory( "BackBody", "blah" );
-            medical.TopicCategories[1].AddTopic( new Topic("headTopic") );
+            medical.TopicCategories[1].AddTopic( new Topic("upperBackTopic") );
 
             //---------------------- Init button count bubbles  ------------
             medical.updateBubbleCount( $("#bubbleINeed"), 0 );
@@ -863,7 +886,9 @@
 
                 if (curTopic != null){
                     curTopic.isActive = true;
-                    sourceElement.className = "headTopic circle";
+//                    sourceElement.className = "headTopic circle";
+                    $(sourceElement).removeClass('circleDashed');
+                    $(sourceElement).addClass('circle');
 
                     var pt = $("#PainType");
 
