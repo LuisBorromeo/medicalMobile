@@ -24,6 +24,7 @@
 
     <style>
 
+
         .bg {
             background-image: url('img/ios_notification_bg_tile.jpg')!important;
             background-color: transparent!important;
@@ -144,7 +145,12 @@
             display: table-cell;
             vertical-align: middle;
             text-align: center;
+        }
 
+        #PainManagementSummary {
+            color: #ff0000;
+            margin: 3px;
+            height: 600px;
         }
 
 
@@ -180,13 +186,27 @@
             height: 140px;
         }
 
+        /*---  dialog modal -----*/
+        .ui-dialog-contain {
+            width: 92.5%;
+            max-width: 900px;
+            margin: 10% auto 15px auto;
+            padding: 0;
+            position: relative;
+            top: -15px;
+        }
+
         /*------------- anatomy button style -------------*/
 
         .circle {
-            background: #ff0000;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+            background: #ffffff;
+            border: 1em solid #ffffff;
+            padding: 2em;
+            height: 7em;
+            width: 7em;
+            border-radius: 7em;
+            text-align: center;
+            margin: 2em auto 0;
         }
 
         .circleDashed {
@@ -267,6 +287,7 @@
             /* Should be unset in IE9+ I think. */
             filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
         }
+
 
 
     </style>
@@ -395,74 +416,16 @@
 <!-- PainManagementFontBody-->
 <div data-role="page" id="PainManagementPageFrontBody" data-theme="a" class="bg">
 
-
-    <div data-role="panel" id="addPainTopicPanel" data-position="right" data-display="overlay" class="ui-panel ui-panel-position-right ui-panel-display-overlay ui-body-a ui-panel-animate ui-panel-closed">
-
-        <div data-role="fieldcontain">
-            <label for="slider1">
-                Pain Level
-            </label>
-            <input id="slider1" type="range" name="slider" value="0" min="0" max="10"
-                   data-highlight="false">
-        </div>
-        <div data-role="fieldcontain">
-            <label for="slider2">
-                Pain Onset
-            </label>
-            <input id="slider2" type="range" name="slider" value="0" min="0" max="10"
-                   data-highlight="false">
-        </div>
-        <div data-role="fieldcontain">
-            <label for="PainType">
-                Pain Type:
-            </label>
-            <select id="PainType" name="PainType" data-mini="true">
-                <option value="Aching">
-                    Aching
-                </option>
-                <option value="Burning">
-                    Burning
-                </option>
-            </select>
-        </div>
-        <div data-role="fieldcontain">
-            <label for="AggravatingFactors">
-                Aggravating Factors:
-            </label>
-            <select id="AggravatingFactors" name="AggravatingFactors" data-mini="true">
-                <option value="Breathing">
-                    Breathing
-                </option>
-                <option value="Talking">
-                    Talking
-                </option>
-            </select>
-        </div>
-        <div data-role="fieldcontain">
-            <label for="AlleviatingFactors">
-                Alleviating Factors:
-            </label>
-            <select id="AlleviatingFactors" name="AlleviatingFactors" data-mini="true">
-                <option value="Cold Therapy">
-                    Cold Therapy
-                </option>
-                <option value="Cold Therapy">
-                    Heat Therapy
-                </option>
-            </select>
-        </div>
-
-    </div>
-
-
     <div data-role="content" class="bg">
         Pain Management
 
         <div id="front" class="frontAnatomy">
 
-            <div class="headTopic circleDashed" onclick="medical.toggleTopic('FrontBody','headTopic')">
-                <a href="#addPainTopicPanel"><span class="topicLabel rotate">Head</span></a>
-            </div>
+            <a href="javascript:medical.setSelectedCircle('headCircle', 'FrontBody', 'headTopic')">
+                <div id="headCircle" class="headTopic circleDashed">
+                    <span class="topicLabel rotate">Head</span>
+                </div>
+            </a>
 
         </div>
 
@@ -491,6 +454,74 @@
             </ul>
         </div>
 
+    </div>
+</div>
+
+<!-- AddTopicDialog -->
+<div data-role="dialog" id="addPainTopic" data-theme="a">
+    <div data-role="content">
+        <form id="addTopicForm">
+            <div data-role="fieldcontain">
+                <label for="slider1">
+                    Pain Level
+                </label>
+                <input id="slider1" type="range" name="slider" value="0" min="0" max="10"
+                       data-highlight="false">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="slider2">
+                    Pain Onset
+                </label>
+                <input id="slider2" type="range" name="slider" value="0" min="0" max="10"
+                       data-highlight="false">
+            </div>
+            <div data-role="fieldcontain">
+                <label for="PainType">
+                    Pain Type:
+                </label>
+                <select id="PainType" name="PainType">
+                    <option value="Aching">
+                        Aching
+                    </option>
+                    <option value="Burning">
+                        Burning
+                    </option>
+                </select>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="AggravatingFactors">
+                    Aggravating Factors:
+                </label>
+                <select id="AggravatingFactors" name="AggravatingFactors">
+                    <option value="Breathing">
+                        Breathing
+                    </option>
+                    <option value="Talking">
+                        Talking
+                    </option>
+                </select>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="AlleviatingFactors">
+                    Alleviating Factors:
+                </label>
+                <select id="AlleviatingFactors" name="AlleviatingFactors">
+                    <option value="Cold Therapy">
+                        Cold Therapy
+                    </option>
+                    <option value="Cold Therapy">
+                        Heat Therapy
+                    </option>
+                </select>
+            </div>
+            <p></p>
+            <p></p>
+            <a href="javascript:medical.saveTopic(
+            medical.SelectedCircle.srcEl,
+            medical.SelectedCircle.categoryName,
+            medical.SelectedCircle.topicName)" data-role="button">Add Pain</a>
+            <a data-role="button" data-rel="back">Cancel</a>
+        </form>
     </div>
 </div>
 
@@ -538,7 +569,7 @@
     <div data-role="content" class="bg">
         Pain Management
 
-        <div id="front">
+        <div id="PainManagementSummary">
               summary here
         </div>
 
@@ -634,6 +665,7 @@
     </div>
 </div>
 
+
 <audio id="soundHandle" style="display: none;" />
 
 
@@ -702,15 +734,6 @@
             $( document ).on( "click", ".ui-btn", function( event, ui ) {
                 console.log("button click");
 
-                /*
-                 jQuery play sound.
-                 var soundHandle = document.getElementById('soundHandle');
-                 soundHandle.src = 'button-9.mp3';
-                 soundHandle.play();
-                 */
-
-                //var my_media = new Media("/android_asset/www/button-9.mp3");
-                //my_media.play();
             });
 
             //icon buttons with css class btnINeed assigned to them
@@ -723,7 +746,7 @@
                 medical.updateBubbleCount( $("#bubbleINeed"), bubbleCount );
             });
 
-            //icon buttons with css class btnINeed assigned to them
+            //icon buttons with css class btnSymptoms assigned to them
             $( document ).on( "click", ".btnSymptoms", function( event, ui ) {
                 console.log("Symptoms icon clicked");
 
@@ -742,14 +765,12 @@
                 medical.clearKeyboardText();
             });
 
-            //buttonSound = new Media("/www/button-9.mp3", function(){}, function(){});
-            //buttonSound.play();
-
         },
 
         /*------------------ Initialize Properties ------------------*/
 
         TopicCategories: [],
+        SelectedCircle: null,
 
         /*------------------ Methods ------------------*/
 
@@ -819,8 +840,21 @@
             sigCapture.clear();
         },
 
-        toggleTopic : function( categoryName, topicName ){
+        setSelectedCircle: function (srcEl, categoryName, topicName){
+            console.log('selecting circle');
 
+            $.mobile.changePage('#addPainTopic', 'pop', true, true);
+
+            medical.SelectedCircle = {
+                'srcEl': srcEl,
+                'categoryName': categoryName,
+                'topicName': topicName
+            }
+        },
+
+        saveTopic : function( srcEl, categoryName, topicName ){
+
+            var sourceElement = $('#'+srcEl)[0];
             var curCat = medical.getCategory(categoryName);
 
             if (curCat != null){
@@ -828,16 +862,49 @@
                 var curTopic = medical.getTopic( curCat, topicName);
 
                 if (curTopic != null){
-                    curTopic.Toggle();
+                    curTopic.isActive = true;
+                    sourceElement.className = "headTopic circle";
+
+                    var pt = $("#PainType");
+
+                    //Add the meta data
+                    curTopic.metaData = {
+                        'painLevel': $('#slider1').val(),
+                        'painOnset': $('#slider2').val(),
+                        'painType': pt.val(),
+                        'aggravatingFactors': $("#AggravatingFactors").val(),
+                        'alleviatingFactors': $('#AlleviatingFactors').val()
+                    };
+
+                    //reset the pain form
+                    addTopicForm.reset();
+
+                    //close the dialog
+                    //$('#addPainTopic').dialog('close');
+
+
+                    //write the summary
+                    var allPainTopics = medical.formatTopicOutput( curTopic );
+                    $('#PainManagementSummary').html( allPainTopics );
+
+                    //go to summary
+                    $.mobile.navigate( "#PainManagementPageSummary" );
+
                 }
 
-                //refresh counts.
-                //$("#bubblePainManagement").text( curCat.CategoryCount() );
             }
 
             //update bubble count on main menu button for pain management
             var allCategoriesCount = medical.allCategoriesCount();
             medical.updateBubbleCount( $("#bubblePainManagement"), allCategoriesCount );
+        },
+
+        formatTopicOutput: function( topic ){
+            var result = "";
+            result += "<p></p>TopicName:" + topic.TopicId;
+            result += "<p></p>PainLevel:" + topic.metaData.painLevel;
+
+            return result;
         },
 
         allCategoriesCount: function(){
