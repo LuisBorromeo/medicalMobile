@@ -879,13 +879,29 @@
                     //reset the pain form
                     addTopicForm.reset();
 
-                    //close the dialog
-                    //$('#addPainTopic').dialog('close');
-
-
                     //write the summary
+                    /*
                     var allPainTopics = medical.formatTopicOutput( curTopic );
                     $('#PainManagementSummary').html( allPainTopics );
+                    */
+
+                    var allPainTopics = "";
+
+                    $.each(medical.TopicCategories, function(i, v) {
+                        var curCat = medical.TopicCategories[i];
+
+                        $.each(curCat.Topics, function(x, z) {
+                            if ( curCat.Topics[x].isActive == true) {
+                                console.log("formatting topic for summary:" + curCat.Topics[x].topicName);
+                                allPainTopics += medical.formatTopicOutput( curCat.Topics[x] );
+                            }
+                        });
+                    });
+
+                    $('#PainManagementSummary').html( allPainTopics );
+
+                    //close the dialog
+                    //$('#addPainTopic').dialog('close');
 
                     //go to summary
                     $.mobile.navigate( "#PainManagementPageSummary" );
