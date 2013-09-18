@@ -458,7 +458,7 @@
 
 <!-- INeed -->
 <div data-role="page" id="INeedPage" data-theme="b" class="bg" data-add-back-btn="true">
-    <div data-theme="b" data-role="header">
+    <div data-theme="b" data-role="header" data-position="fixed">
         <h3>
             Commun-A-Care
         </h3>
@@ -562,7 +562,7 @@
 
 <!-- Symptoms -->
 <div data-role="page" id="SymptomsPage" data-theme="b" class="bg" data-add-back-btn="true">
-    <div data-theme="b" data-role="header">
+    <div data-theme="b" data-role="header" data-position="fixed">
         <h3>
             Commun-A-Care
         </h3>
@@ -625,7 +625,7 @@
     </div>            
             
     </div>
-    <div data-theme="b" data-role="footer" data-position="inline">
+    <div data-theme="b" data-role="footer" data-position="fixed">
 		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
 		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
 		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
@@ -708,7 +708,7 @@
 
         <div id="front" class="frontAnatomy">
 
-            <a href="javascript:medical.setSelectedCircle('headCircle', 'FrontBody', 'headTopic')">
+            <a href="javascript:medical.setSelectedCircle('headCircle', 'FrontBody', 'headCircle')">
                 <div id="headCircle" class="headTopic circleDashed">
                     <span class="topicLabel rotate">Head</span>
                 </div>
@@ -716,7 +716,7 @@
 
         </div>
 
-        <div data-theme="b" data-role="footer" data-position="inline">
+        <div data-theme="b" data-role="footer" data-position="fixed">
             <a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
             <h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
             <a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
@@ -733,7 +733,7 @@
 
         <div id="back" class="backAnatomy">
 
-            <a href="javascript:medical.setSelectedCircle('upperBackCircle', 'BackBody', 'upperBackTopic')">
+            <a href="javascript:medical.setSelectedCircle('upperBackCircle', 'BackBody', 'upperBackCircle')">
                 <div id="upperBackCircle" class="upperBackCircle circleDashed">
                     <span class="topicLabel rotate">Upper Back</span>
                 </div>
@@ -741,7 +741,7 @@
 
         </div>
 
-        <div data-theme="b" data-role="footer" data-position="inline">
+        <div data-theme="b" data-role="footer" data-position="fixed">
             <a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
             <h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
             <a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
@@ -753,7 +753,7 @@
 
 <!-- PainManagementSummary-->
 <div data-role="page" id="PainManagementPageSummary" data-theme="b" class="bg" data-add-back-btn="true">
-    <div data-theme="b" data-role="header">
+    <div data-theme="b" data-role="header" data-position="fixed">
         <h3>
             Commun-A-Care
         </h3>
@@ -799,7 +799,7 @@
         </div>
 
     </div>
-    <div data-theme="b" data-role="footer" data-position="inline">
+    <div data-theme="b" data-role="footer" data-position="fixed">
 		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
 		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
 		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
@@ -808,7 +808,7 @@
 
 <!-- Keyboard -->
 <div data-role="page" id="KeyboardPage" data-theme="b" class="bg" data-add-back-btn="true">
-    <div data-theme="b" data-role="header">
+    <div data-theme="b" data-role="header" data-position="fixed">
         <h3>
             Commun-A-Care
         </h3>
@@ -821,7 +821,7 @@
             <textarea  id="txtKeyboard" placeholder="" rows="2" cols="10"></textarea>
         </div>
     </div>
-    <div data-theme="b" data-role="footer" data-position="inline">
+    <div data-theme="b" data-role="footer" data-position="fixed">
 		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
 		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
 		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
@@ -868,10 +868,10 @@
 
             //---------------------- Set Topic Categories ------------------
             medical.TopicCategories[0]  = new TopicCategory( "FrontBody", "blah" );
-            medical.TopicCategories[0].AddTopic( new Topic("headTopic", "Head") );
+            medical.TopicCategories[0].AddTopic( new Topic("headCircle", "Head") );
 
             medical.TopicCategories[1]  = new TopicCategory( "BackBody", "blah" );
-            medical.TopicCategories[1].AddTopic( new Topic("upperBackTopic", "Upper Back") );
+            medical.TopicCategories[1].AddTopic( new Topic("upperBackCircle", "Upper Back") );
 
             //---------------------- Init button count bubbles  ------------
             medical.updateBubbleCount( $("#bubbleINeed"), 0 );
@@ -1194,6 +1194,11 @@
 
                         //dispose the metadata
                         curCat.Topics[x].metaData = null;
+
+                        //reset the circle css
+                        var circle = $('#' + curCat.Topics[x].TopicId);
+                        circle.removeClass('circle');
+                        circle.addClass('circleDashed');
                     }
                 });
             });

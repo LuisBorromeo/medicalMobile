@@ -1,6 +1,7 @@
 var Topic = (function () {
-    function Topic(sourceElementId) {
+    function Topic(sourceElementId, topicName) {
         this.TopicId = sourceElementId;
+        this.TopicName = topicName;
         this.isActive = false;
         console.log("creates topic " + this.TopicId);
     }
