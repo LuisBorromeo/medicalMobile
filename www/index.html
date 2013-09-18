@@ -188,9 +188,12 @@
         }
 
         #PainManagementSummary {
-            color: #ff0000;
             margin: 3px;
             height: 600px;
+        }
+
+        th {
+            white-space: nowrap;
         }
 
 
@@ -763,7 +766,7 @@
 </div>
 
 <!-- PainManagementBackBody-->
-<div data-role="page" id="PainManagementPageBackBody" data-theme="ab" class="bg">
+<div data-role="page" id="PainManagementPageBackBody" data-theme="b" class="bg">
 
     <div data-role="content" class="bg">
         Pain Management
@@ -800,36 +803,28 @@
 
         <div id="PainManagementSummary">
 			<div id="main" class="ui-grid-a">
-				<div class="ui-block-a">
-				<a href="#PainManagementPageFrontBody" data-role="button" data-inline="true"><img src="img/logo.png" /></a>
-				<a href="#PainManagementPageBackBody" data-role="button" data-inline="true">
-				<img src="img/logo.png" />
-				</a>
+				<div class="ui-block-a" style="width: 200px;">
+				<a href="#PainManagementPageFrontBody" data-role="button" data-inline="true">front</a>
+				<a href="#PainManagementPageBackBody" data-role="button" data-inline="true">back</a>
 				</div>
 				<div class="ui-block-b">
-					<ul id="summaryItemCont" data-inline="true" data-role="listview" data-split-icon="delete" data-split-theme="b" >
 
-                        <li>
-                            <div class="ui-grid-c">
-                                <div class="ui-block-a" style="width:15%; white-space:nowrap;">
-                                    <h3>Head<h3>
-                                </div>
-                                <div class="ui-block-b" style="width:20%;white-space:nowrap;">
-                                    <label id="painlevel">Pain Level: x</label><br>
-                                    <label id="painonset">Pain Onset: x</label>
-                                </div>
-                                <div class="ui-block-c" style="width:50%;">
-                                    <label id="paintype">Pain Type: what not</label><br>
-                                    <label id="painlevel">Aggravating Factor: what not</label><br>
-                                    <label id="painlevel">Alleviating Factor: what not</label>
-                                </div>
-                                <div class="ui-block-d">
-                                    <a href="#delete" data-role="button" data-icon="delete" data-iconpos="notext" data-rel="popup" data-position-to="window" data-transition="pop" data-mini="true">Delete</a>
-                                </div>
-                            </div>
-                        </li>
+                    <table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke">
+                        <thead>
+                        <tr>
+                            <th data-priority="persist">Topic</th>
+                            <th data-priority="2">Pain Level</th>
+                            <th data-priority="2">Pain Onset</th>
+                            <th data-priority="3">Pain Type</th>
+                            <th data-priority="4">Aggravating Factor</th>
+                            <th data-priority="5">Elevating Factor</th>
+                            <th data-priority="6">Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody id="summaryItemCont">
 
-                    </ul>
+                        </tbody>
+                    </table>
 
 					<div data-role="popup" id="delete" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
 						<h3>Delete?</h3>
@@ -839,6 +834,7 @@
 					</div>				
 				
 				</div>
+
 			</div>
         </div>
 
@@ -915,7 +911,7 @@
             medical.TopicCategories[0].AddTopic( new Topic("headTopic") );
 
             medical.TopicCategories[1]  = new TopicCategory( "BackBody", "blah" );
-            medical.TopicCategories[1].AddTopic( new Topic("headTopic") );
+            medical.TopicCategories[1].AddTopic( new Topic("upperBackTopic") );
 
             //---------------------- Init button count bubbles  ------------
             medical.updateBubbleCount( $("#bubbleINeed"), 0 );
@@ -1184,7 +1180,7 @@
                     });
 
                     $('#summaryItemCont').html( allPainTopics );
-                    $('#summaryItemCont').listview( "refresh" );
+                    //$('#summaryItemCont').listview( "refresh" );
 
                     //close the dialog
                     //$('#addPainTopic').dialog('close');
@@ -1203,54 +1199,16 @@
         formatTopicOutput: function( topic ){
 
             var result = "";
-            /*
-            result += "<p></p>TopicName:" + topic.TopicId;
-            result += "<p></p>PainLevel:" + topic.metaData.painLevel;
-            */
 
-
-            result += '<li>'
-                    + '<div class="ui-grid-c">'
-                        + '<div class="ui-block-a" style="width:15%; white-space:nowrap;">'
-                            + '<h3>'+ topic.TopicId +'<h3>'
-                        + '</div>'
-                        + '<div class="ui-block-b" style="width:20%;white-space:nowrap;">'
-                            + '<label>Pain Level:' + topic.metaData.painLevel + '</label><br>'
-                            + '<label>Pain Onset: x</label>'
-                        + '</div>'
-                        + '<div class="ui-block-c" style="width:50%;">'
-                            + '<label>Pain Type: what not</label><br>'
-                            + '<label>Aggravating Factor: what not</label><br>'
-                            + '<label">Alleviating Factor: what not</label>'
-                        + '</div>'
-                        + '<div class="ui-block-d">'
-                            + '<a href="#delete" data-role="button" data-icon="delete" data-iconpos="notext" data-rel="popup" data-position-to="window" data-transition="pop" data-mini="true">Delete</a>'
-                        + '</div>'
-                    + '</div>'
-                    + '</li>';
-
-
-            /*
-             <li>
-                 <div class="ui-grid-c">
-                     <div class="ui-block-a" style="width:15%; white-space:nowrap;">
-                        <h3>Head<h3>
-                     </div>
-                     <div class="ui-block-b" style="width:20%;white-space:nowrap;">
-                        <label id="painlevel">Pain Level: x</label><br>
-                        <label id="painonset">Pain Onset: x</label>
-                     </div>
-                     <div class="ui-block-c" style="width:50%;">
-                         <label id="paintype">Pain Type: what not</label><br>
-                         <label id="painlevel">Aggravating Factor: what not</label><br>
-                         <label id="painlevel">Alleviating Factor: what not</label>
-                     </div>
-                     <div class="ui-block-d">
-                        <a href="#delete" data-role="button" data-icon="delete" data-iconpos="notext" data-rel="popup" data-position-to="window" data-transition="pop" data-mini="true">Delete</a>
-                     </div>
-                 </div>
-             </li>
-            */
+            result += '<tr>'
+                    + '<td>'+ topic.TopicId + '</td>'
+                    + '<td>'+ topic.metaData.painLevel +'</td>'
+                    + '<td>'+ topic.metaData.painOnset +'</td>'
+                    + '<td>'+ topic.metaData.painType +'</td>'
+                    + '<td>'+ topic.metaData.aggravatingFactors +'</td>'
+                    + '<td>'+ topic.metaData.alleviatingFactors +'</td>'
+                    + '<td><a href="#" data-role="button" data-mini="true">remove</a></td>'
+                    + '</tr>';
 
             return result;
         },
