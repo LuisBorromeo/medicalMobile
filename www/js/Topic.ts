@@ -7,10 +7,12 @@ interface iTopic {
 
 class Topic implements iTopic {
     TopicId : string;
+    TopicName : string;
     isActive : bool;
 
-    constructor(sourceElementId :string){
+    constructor(sourceElementId :string, topicName :string){
         this.TopicId = sourceElementId;
+        this.TopicName = topicName;
         this.isActive = false;
 
         console.log("creates topic " + this.TopicId);

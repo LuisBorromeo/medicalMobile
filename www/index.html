@@ -47,8 +47,8 @@
             position: relative;
             margin: .3em 0;
             padding: 0;
-            height: 220px;
-            line-height: 180px;
+            height: 185px;
+            line-height: 140px;
         }
 
 
@@ -103,14 +103,18 @@
             height: 10%;
 
         }
-/*
+
+        /*
 		div.ui-slider {
-			zoom: 2;
-		}		
+			zoom: 1;
+
+        }
+        */
 		
-		.ui-field-contain div.ui-slider-switch { width: 9em; }
-*/
-	
+		.ui-field-contain div.ui-slider-switch {
+            width: 9em;
+        }
+
 		
         /*------------ pain management diagram topics --------------------*/
         .frontAnatomy {
@@ -345,81 +349,37 @@
             filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
         }
 
-        /*------Panel size override---------*/
-        @left-panel-width: 17em;
-
-        .ui-panel {
-            width: 50em;
-        }
-
-        .ui-panel.ui-panel-position-right {
-            width: 50em;
-        }
-
-        .ui-panel.ui-panel-closed {
-            width: 0;
-        }
-
-        .ui-panel-position-left {
-            left: -@left-panel-width
-        }
-
-        .ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
-            -webkit-transform: translate3d(-@left-panel-width, 0, 0);
-            -moz-transform: translate3d(-@left-panel-width, 0, 0);
-            transform: translate3d(-@left-panel-width, 0, 0)
-        }
-
-        .ui-panel-position-right {
-            right: -@right-panel-width
-        }
-
-        .ui-panel-animate.ui-panel-position-right.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-right.ui-panel-display-push {
-            -webkit-transform: translate3d(50em, 0, 0);
-            -moz-transform: translate3d(50em, 0, 0);
-            transform: translate3d(50em, 0, 0)
-        }
-
-        .ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open, .ui-panel-content-wrap-position-left.ui-panel-content-wrap-open, .ui-panel-dismiss-position-left.ui-panel-dismiss-open {
-            left: @left-panel-width;
-            right: -@right-panel-width
-        }
-
-        .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push, .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
-            -webkit-transform: translate3d(@left-panel-width, 0, 0);
-            -moz-transform: translate3d(@left-panel-width, 0, 0);
-            transform: translate3d(@left-panel-width, 0, 0)
-        }
-
-        .ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open, .ui-panel-content-wrap-position-right.ui-panel-content-wrap-open, .ui-panel-dismiss-position-right.ui-panel-dismiss-open {
-            left: -@left-panel-width;
-            right: @right-panel-width
-        }
-
-        .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push, .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
-            -webkit-transform: translate3d(-50em, 0, 0);
-            -moz-transform: translate3d(-50em, 0, 0);
-            transform: translate3d(-50em, 0, 0)
-        }
-
-        @media (min-width:55em) {
-            .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-left, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-left, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-left, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-left {
-                margin-right: 50em
+        /*------grid override---------*/
+        @media ( min-width: 40em ) {
+            /* Show the table header rows and set all cells to display: table-cell */
+            .my-custom-breakpoint td,
+            .my-custom-breakpoint th,
+            .my-custom-breakpoint tbody th,
+            .my-custom-breakpoint tbody td,
+            .my-custom-breakpoint thead td,
+            .my-custom-breakpoint thead th {
+                font-size: 22px;
+                display: table-cell;
+                margin: 0;
+                padding: 15px;
             }
-
-            .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-right, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-right, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-right, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-right {
-                margin-left: @left-panel-width
+            /* Hide the labels in each cell */
+            .my-custom-breakpoint td .ui-table-cell-label,
+            .my-custom-breakpoint th .ui-table-cell-label {
+                display: none;
             }
         }
 
-        /*-----End panel override---------*/
+        .summaryItem{}
+
+        /*-----End grid override---------*/
 
     </style>
 </head>
 <body>
 <!-- Home -->
 <div data-role="page" id="page1" data-theme="b" class="bg">
-    <div data-theme="b" data-role="header">
+    <div data-theme="b" data-role="header" data-position="fixed">
         <h3>
             Commun-A-Care
         </h3>
@@ -473,7 +433,7 @@
 							<span id="No">No</span>
 						</a>
 					</div>
-                <div class="ui-block-c" style="vertical-align:middle;line-height:275px">
+                <div class="ui-block-c" style="vertical-align:middle;line-height:225px">
                     <div class="LanguageSwitchCont">
                         <select name="spanishToggle" id="spanishToggle" data-theme="b" data-role="slider">
                             <option value="off">
@@ -489,7 +449,7 @@
             </div>
         </div>
     </div>
-    <div data-theme="b" data-role="footer" data-position="inline">
+    <div data-theme="b" data-role="footer" data-position="fixed">
 		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
 		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
 		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
@@ -809,7 +769,7 @@
 				</div>
 				<div class="ui-block-b">
 
-                    <table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke">
+                    <table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive table-stroke my-custom-breakpoint">
                         <thead>
                         <tr>
                             <th data-priority="persist">Topic</th>
@@ -817,7 +777,7 @@
                             <th data-priority="2">Pain Onset</th>
                             <th data-priority="3">Pain Type</th>
                             <th data-priority="4">Aggravating Factor</th>
-                            <th data-priority="5">Elevating Factor</th>
+                            <th data-priority="5">Alleviating Factor</th>
                             <th data-priority="6">Remove</th>
                         </tr>
                         </thead>
@@ -908,10 +868,10 @@
 
             //---------------------- Set Topic Categories ------------------
             medical.TopicCategories[0]  = new TopicCategory( "FrontBody", "blah" );
-            medical.TopicCategories[0].AddTopic( new Topic("headTopic") );
+            medical.TopicCategories[0].AddTopic( new Topic("headTopic", "Head") );
 
             medical.TopicCategories[1]  = new TopicCategory( "BackBody", "blah" );
-            medical.TopicCategories[1].AddTopic( new Topic("upperBackTopic") );
+            medical.TopicCategories[1].AddTopic( new Topic("upperBackTopic", "Upper Back") );
 
             //---------------------- Init button count bubbles  ------------
             medical.updateBubbleCount( $("#bubbleINeed"), 0 );
@@ -930,6 +890,9 @@
                 }
 
             });
+
+            //prevent verical scrolling;
+            $(document).delegate(".ui-content", "scrollstart", false);
 
             //event : entering the keyboard page
             $( document ).on( "pageshow", "#KeyboardPage", function ( event ) {
@@ -1032,8 +995,8 @@
 				
                 var bubbleCount = $("#SymptomsControlGroup > .ui-controlgroup-controls").children().length;
                 medical.updateBubbleCount( $("#bubbleSymptoms"), bubbleCount );
-            });				
-			
+            });
+
             //Specific buttons
             $( document ).on( "click", "#btnReset", function( event, ui ) {
                 medical.clearSketch();
@@ -1043,6 +1006,14 @@
                 medical.clearKeyboardText();
             });
 
+
+            //remove from item summary
+            $( document ).on( "click", ".summaryItem", function( event, ui ) {
+                console.log("Summary item clicked");
+
+                var topicId = $(event.currentTarget).attr('topicid');
+                medical.removeSummaryItem(topicId);
+            });
 
         },
 
@@ -1142,7 +1113,6 @@
 
                 if (curTopic != null){
                     curTopic.isActive = true;
-//                    sourceElement.className = "headTopic circle";
                     $(sourceElement).removeClass('circleDashed');
                     $(sourceElement).addClass('circle');
 
@@ -1161,26 +1131,7 @@
                     addTopicForm.reset();
 
                     //write the summary
-                    /*
-                    var allPainTopics = medical.formatTopicOutput( curTopic );
-                    $('#PainManagementSummary').html( allPainTopics );
-                    */
-
-                    var allPainTopics = "";
-
-                    $.each(medical.TopicCategories, function(i, v) {
-                        var curCat = medical.TopicCategories[i];
-
-                        $.each(curCat.Topics, function(x, z) {
-                            if ( curCat.Topics[x].isActive == true) {
-                                console.log("formatting topic for summary:" + curCat.Topics[x].topicName);
-                                allPainTopics += medical.formatTopicOutput( curCat.Topics[x] );
-                            }
-                        });
-                    });
-
-                    $('#summaryItemCont').html( allPainTopics );
-                    //$('#summaryItemCont').listview( "refresh" );
+                    medical.refreshSummaryGrid();
 
                     //close the dialog
                     //$('#addPainTopic').dialog('close');
@@ -1196,21 +1147,61 @@
             medical.updateBubbleCount( $("#bubblePainManagement"), allCategoriesCount );
         },
 
+        refreshSummaryGrid: function(){
+
+            var allPainTopics = "";
+
+            $.each(medical.TopicCategories, function(i, v) {
+                var curCat = medical.TopicCategories[i];
+
+                $.each(curCat.Topics, function(x, z) {
+                    if ( curCat.Topics[x].isActive == true) {
+                        console.log("formatting topic for summary:" + curCat.Topics[x].TopicName);
+                        allPainTopics += medical.formatTopicOutput( curCat.Topics[x] );
+                    }
+                });
+            });
+
+            //refresh the grid
+            $('#summaryItemCont').html( allPainTopics ).trigger("create");
+        },
+
         formatTopicOutput: function( topic ){
 
             var result = "";
 
             result += '<tr>'
-                    + '<td>'+ topic.TopicId + '</td>'
+                    + '<td>'+ topic.TopicName + '</td>'
                     + '<td>'+ topic.metaData.painLevel +'</td>'
                     + '<td>'+ topic.metaData.painOnset +'</td>'
                     + '<td>'+ topic.metaData.painType +'</td>'
                     + '<td>'+ topic.metaData.aggravatingFactors +'</td>'
                     + '<td>'+ topic.metaData.alleviatingFactors +'</td>'
-                    + '<td><a href="#" data-role="button" data-mini="true">remove</a></td>'
+                    + '<td><a href="#" TopicId="'+ topic.TopicId +'" data-role="button" data-mini="true" class="summaryItem">remove</a></td>'
                     + '</tr>';
 
             return result;
+        },
+
+        removeSummaryItem: function( topicId ){
+
+            $.each(medical.TopicCategories, function(i, v) {
+                var curCat = medical.TopicCategories[i];
+
+                $.each(curCat.Topics, function(x, z) {
+                    if ( curCat.Topics[x].isActive == true && curCat.Topics[x].TopicId == topicId) {
+                        curCat.Topics[x].Toggle();
+
+                        //dispose the metadata
+                        curCat.Topics[x].metaData = null;
+                    }
+                });
+            });
+
+
+            //refresh the grid
+            medical.refreshSummaryGrid();
+
         },
 
         allCategoriesCount: function(){
