@@ -26,12 +26,20 @@
 
 
         .bg {
-            background-image: url('img/ios_notification_bg_tile.jpg')!important;
-            background-color: transparent!important;
+            /*background-image: url('img/ios_notification_bg_tile.jpg')!important;*/
+			/*background-color:lightgray!important;*/
+			background-color: transparent!important;
             background-attachment:scroll;
             /*background-size:100% 100%;*/
         }
 
+
+		 .ui-btn-inner {
+            font-size: 24px;
+            white-space: normal;
+            zoom: 1;
+        }		
+		
         .mainMenuButton {
             display: block;
             text-align: center;
@@ -43,6 +51,12 @@
             line-height: 180px;
         }
 
+
+		.mainMenuButton .ui-btn-text { 
+			font-size: 38px;
+			/*white-space: nowrap;*/
+		}
+		
         /*
         .ui-btn {
             display: block;
@@ -55,6 +69,7 @@
             line-height: 90px;
         }
         */
+	
 
 
         .ui-btn-inner {
@@ -88,7 +103,15 @@
             height: 10%;
 
         }
-
+/*
+		div.ui-slider {
+			zoom: 2;
+		}		
+		
+		.ui-field-contain div.ui-slider-switch { width: 9em; }
+*/
+	
+		
         /*------------ pain management diagram topics --------------------*/
         .frontAnatomy {
             background-image: url('img/front.png')!important;
@@ -180,6 +203,8 @@
             height: 110px;
             line-height: 90px;
         }
+		
+		
         .btnSymptoms{
             display: inline-block;
             color: #ff0000;
@@ -189,12 +214,24 @@
             line-height: 90px;
         }
 
-        .yesNoCont{
-            /*
-            border: solid;
-            border-width: 50px;
-            */
-
+        .yesBorder{
+			background-color: darkgray;
+			border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px;
+			border: solid;
+            border-width: 14px;
+			border-color: darkgray;
+			border-bottom-right-radius: 0% 0%;
+			border-top-right-radius: 0% 0%;			
+        }
+		
+        .noBorder{
+			background-color: darkgray;
+			border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px;
+			border: solid;
+            border-width: 14px;
+			border-color: darkgray;
+			border-bottom-left-radius: 0% 0%;
+			border-top-left-radius: 0% 0%;						
         }
 
         .controlGroupContainer{
@@ -305,25 +342,96 @@
             filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
         }
 
+        /*------Panel size override---------*/
+        @left-panel-width: 17em;
 
+        .ui-panel {
+            width: 50em;
+        }
+
+        .ui-panel.ui-panel-position-right {
+            width: 50em;
+        }
+
+        .ui-panel.ui-panel-closed {
+            width: 0;
+        }
+
+        .ui-panel-position-left {
+            left: -@left-panel-width
+        }
+
+        .ui-panel-animate.ui-panel-position-left.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-left.ui-panel-display-push {
+            -webkit-transform: translate3d(-@left-panel-width, 0, 0);
+            -moz-transform: translate3d(-@left-panel-width, 0, 0);
+            transform: translate3d(-@left-panel-width, 0, 0)
+        }
+
+        .ui-panel-position-right {
+            right: -@right-panel-width
+        }
+
+        .ui-panel-animate.ui-panel-position-right.ui-panel-display-overlay, .ui-panel-animate.ui-panel-position-right.ui-panel-display-push {
+            -webkit-transform: translate3d(50em, 0, 0);
+            -moz-transform: translate3d(50em, 0, 0);
+            transform: translate3d(50em, 0, 0)
+        }
+
+        .ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open, .ui-panel-content-wrap-position-left.ui-panel-content-wrap-open, .ui-panel-dismiss-position-left.ui-panel-dismiss-open {
+            left: @left-panel-width;
+            right: -@right-panel-width
+        }
+
+        .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, .ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push, .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, .ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
+            -webkit-transform: translate3d(@left-panel-width, 0, 0);
+            -moz-transform: translate3d(@left-panel-width, 0, 0);
+            transform: translate3d(@left-panel-width, 0, 0)
+        }
+
+        .ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open, .ui-panel-content-wrap-position-right.ui-panel-content-wrap-open, .ui-panel-dismiss-position-right.ui-panel-dismiss-open {
+            left: -@left-panel-width;
+            right: @right-panel-width
+        }
+
+        .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal, .ui-panel-animate.ui-panel-content-fixed-toolbar-position-right.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-push, .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal, .ui-panel-animate.ui-panel-content-wrap-position-right.ui-panel-content-wrap-open.ui-panel-content-wrap-display-push {
+            -webkit-transform: translate3d(-50em, 0, 0);
+            -moz-transform: translate3d(-50em, 0, 0);
+            transform: translate3d(-50em, 0, 0)
+        }
+
+        @media (min-width:55em) {
+            .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-left, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-left, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-left, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-left {
+                margin-right: 50em
+            }
+
+            .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push.ui-panel-content-fixed-toolbar-position-right, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal.ui-panel-content-fixed-toolbar-position-right, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-right, .ui-responsive-panel.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-right {
+                margin-left: @left-panel-width
+            }
+        }
+
+        /*-----End panel override---------*/
 
     </style>
 </head>
 <body>
 <!-- Home -->
-<div data-role="page" id="page1" data-theme="a" class="bg">
+<div data-role="page" id="page1" data-theme="b" class="bg">
+    <div data-theme="b" data-role="header">
+        <h3>
+            Commun-A-Care
+        </h3>
+    </div>
     <div data-role="content">
-
-        <div data-role="fieldcontain">
+	<div data-role="fieldcontain">
             <div class="ui-grid-b">
                 <div class="ui-block-a">
                     <a class="mainMenuButton" data-role="button" href="#INeedPage" data-transition="slide">
-                        <span id="INeed">I Need</span>
+                        <span id="INeed">I Want</span>
                         <span id="bubbleINeed" class='badge'>0</span>
                     </a>
                 </div>
                 <div class="ui-block-b">
-                    <a class="mainMenuButton" data-role="button" href="#PainManagementPageFrontBody" data-transition="slide">
+                    <a class="mainMenuButton" data-role="button" href="#PainManagementPageSummary" data-transition="slide">
                         <span id="PainManagement">Pain Management</span>
                         <span id="bubblePainManagement" class='badge'>0</span>
                     </a>
@@ -335,7 +443,7 @@
                 </div>
                 <div class="ui-block-a">
                     <a class="mainMenuButton" data-role="button" href="#SymptomsPage" data-transition="slide">
-                        <span id="Symptoms">Symptoms</span>
+                        <span id="Symptoms">I Am</span>
                         <span id="bubbleSymptoms" class='badge'>0</span>
                     </a>
                 </div>
@@ -346,26 +454,25 @@
                 </div>
                 <div class="ui-block-c">
                     <a class="mainMenuButton" data-role="button" href="#SketchBoardPage" data-transition="slide">
-                        <span id="Sketchboard">Sketch Board</span>
+                        <span id="Sketchboard">Marker Board</span>
                     </a>
                 </div>
             </div>
 
-            <div class="ui-grid-b yesNoCont">
-                <div class="ui-block-a">
-                    <a class="mainMenuButton" data-role="button" href="#page1" onclick="playaudio('/android_asset/www/audio/button-9.mp3')">
-                        <span id="Yes">Yes</span>
-                    </a>
-                </div>
-                <div class="ui-block-b">
-                    <a class="mainMenuButton" data-role="button" href="#page1">
-                        <span id="No">No</span>
-                    </a>
-                </div>
-                <div class="ui-block-c">
+            <div class="ui-grid-b">
+					<div class="ui-block-a yesBorder">
+						<a class="mainMenuButton" data-role="button" href="#page1" onclick="playaudio('/android_asset/www/audio/button-9.mp3')">
+							<span id="Yes">Yes</span>
+						</a>
+					</div>
+					<div class="ui-block-b noBorder">
+						<a class="mainMenuButton" data-role="button" href="#page1">
+							<span id="No">No</span>
+						</a>
+					</div>
+                <div class="ui-block-c" style="vertical-align:middle;line-height:275px">
                     <div class="LanguageSwitchCont">
-                        <br>
-                        <select name="spanishToggle" id="spanishToggle" data-theme="" data-role="slider">
+                        <select name="spanishToggle" id="spanishToggle" data-theme="b" data-role="slider">
                             <option value="off">
                                 English
                             </option>
@@ -373,105 +480,193 @@
                                 Spanish
                             </option>
                         </select>
-                    </div>
-
+                    </div>			
+					
                 </div>
             </div>
-
         </div>
     </div>
+    <div data-theme="b" data-role="footer" data-position="inline">
+		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
+		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
+		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
+    </div>		
 </div>
 
 <!-- INeed -->
-<div data-role="page" id="INeedPage" data-theme="a" class="bg">
+<div data-role="page" id="INeedPage" data-theme="b" class="bg" data-add-back-btn="true">
+    <div data-theme="b" data-role="header">
+        <h3>
+            Commun-A-Care
+        </h3>
+    </div>
     <div data-role="content">
             <div class="controlGroupContainer">
-                <div id="INeedControlGroup" data-role="controlgroup" data-type="horizontal"></div>
+                <div id="INeedControlGroup" data-role="controlgroup" data-type="horizontal" data-inline="true"></div>
             </div>
-
             <div id="INeedIcons">
-                <a href="#" id="icon00" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
-                    <img src="icon.png">
-                </a>
-                <a href="#" id="icon01" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
-                    ico 01
-                </a>
-                <a href="#" id="icon02" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
-                    ico 02
-                </a>
-                <a href="#" id="icon03" class="btnINeed" data-role="button" data-corners="true" data-inline="true">
-                    ico 03
-                </a>
-            </div>
+                <!-- <a href="#" id="icon00" class="btnINeed" data-role="button" data-corners="true" data-inline="true"><img src="icon.png"></a> -->
+<div data-role="collapsible-set" data-inline="true">
+    <div data-role="collapsible" data-content-theme="b" data-collapsed="false" data-inline="true"  id="comfort">
+       <h3>Comfort</h3>
+       <!-- icon test: 
+<a href="#" id="mouthswab" class="btnINeed" data-role="button" data-corners="true" > <img src="img/brand.gif" width="80" height="80"><br>Mouth Swab</a> -->
+<a href="#"  id="mouthswab" class="btnINeed_comfort" data-role="button" data-corners="true" data-inline="true" >Mouth Swab</a>
+
+<a href="#" id="lipmoisturizer" class="btnINeed_comfort" data-role="button" data-corners="true" data-inline="true" >Lip Moisturizer</a>
+
+<a href="#" id="eyeglasses" class="btnINeed_comfort" data-role="button" data-corners="true" data-inline="true" >Eye Glasses</a>
+
+<a href="#" id="mouthsuction" class="btnINeed_comfort" data-role="button" data-corners="true" data-inline="true" >Mouth Suction</a>
+
+<a href="#" id="scratchbody" class="btnINeed_comfort" data-role="button" data-corners="true" data-inline="true" >Scratch Body</a>
+
+<a href="#" id="socks" class="btnINeed_comfort" data-role="button" data-corners="true" data-inline="true" >Socks</a>
+
+<a href="#" id="pillow" class="btnINeed_comfort" data-role="button" data-corners="true" data-inline="true" >Pillow</a>
+
+<a href="#" id="blanket" class="btnINeed_comfort" data-role="button" data-corners="true" data-inline="true" >Blanket</a>
+
+<a href="#" id="waterice" class="btnINeed_comfort" data-role="button" data-corners="true" data-inline="true" >Water / Ice</a>
+
     </div>
+    <div data-role="collapsible" data-content-theme="c" data-inline="true"  id="bodyposition">
+       <h3>Body Position</h3>
+
+<a href="#" id="headup" class="btnINeed_bodyposition" data-role="button" data-corners="true" data-inline="true" >Head Up</a>
+
+<a href="#" id="headdown" class="btnINeed_bodyposition" data-role="button" data-corners="true" data-inline="true" >Head Down</a>
+
+<a href="#" id="turnonside" class="btnINeed_bodyposition" data-role="button" data-corners="true" data-inline="true" >Turn On Side</a>
+
+    </div>
+    <div data-role="collapsible" data-content-theme="c" data-inline="true"  id="people">
+       <h3>People</h3>
+
+<a href="#" id="seefamily" class="btnINeed_people" data-role="button" data-corners="true" data-inline="true" >See Family</a>
+
+<a href="#" id="doctor" class="btnINeed_people" data-role="button" data-corners="true" data-inline="true" >Doctor</a>
+
+<a href="#" id="friends" class="btnINeed_people" data-role="button" data-corners="true" data-inline="true" >Friends</a>
+
+<a href="#" id="nurse" class="btnINeed_people" data-role="button" data-corners="true" data-inline="true" >Nurse</a>
+
+<a href="#" id="rt" class="btnINeed_people" data-role="button" data-corners="true" data-inline="true" >RT</a>
+
+    </div>
+    <div data-role="collapsible" data-content-theme="c" data-inline="true"  id="actions">
+       <h3>Actions</h3>
+
+<a href="#" id="lights" class="btnINeed_actions" data-role="button" data-corners="true" data-inline="true" >Lights On/Off</a>
+
+<a href="#" id="getoutofbed" class="btnINeed_actions" data-role="button" data-corners="true" data-inline="true" >Get Out Of Bed</a>
+
+<a href="#" id="tv" class="btnINeed_actions" data-role="button" data-corners="true" data-inline="true" >TV On/Off</a>
+
+<a href="#" id="calllight" class="btnINeed_actions" data-role="button" data-corners="true" data-inline="true" >Call Light</a>
+
+<a href="#" id="fan" class="btnINeed_actions" data-role="button" data-corners="true" data-inline="true" >Fan On/Off</a>
+
+<a href="#" id="urinal" class="btnINeed_actions" data-role="button" data-corners="true" data-inline="true" >Urinal</a>
+
+<a href="#" id="bedpan" class="btnINeed_actions" data-role="button" data-corners="true" data-inline="true" >Bed Pan</a>
+
+<a href="#" id="handsuntied" class="btnINeed_actions" data-role="button" data-corners="true" data-inline="true" >Hands Untied</a>
+
+    </div>
+    <div data-role="collapsible" data-content-theme="c" data-inline="true"  id="questions">
+       <h3>Questions</h3>
+
+<a href="#" id="date" class="btnINeed_questions" data-role="button" data-corners="true" data-inline="true" >What's the date?</a>
+
+<a href="#" id="time" class="btnINeed_questions" data-role="button" data-corners="true" data-inline="true" >What's the time?</a>
+
+<a href="#" id="tube" class="btnINeed_questions" data-role="button" data-corners="true" data-inline="true" >When will Tube(s) come out?</a>
+
+    </div>            
+</div>            
+
+                
+            </div>
+            
+    </div>
+    <div data-theme="b" data-role="footer" data-position="inline">
+		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
+		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
+		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
+    </div>			
 </div>
 
 <!-- Symptoms -->
-<div data-role="page" id="SymptomsPage" data-theme="a" class="bg">
+<div data-role="page" id="SymptomsPage" data-theme="b" class="bg" data-add-back-btn="true">
+    <div data-theme="b" data-role="header">
+        <h3>
+            Commun-A-Care
+        </h3>
+    </div>
     <div data-role="content">
             <div class="controlGroupContainer">
-                <div id="SymptomsControlGroup" data-role="controlgroup"  data-type="horizontal"></div>
+                <div id="SymptomsControlGroup" data-role="controlgroup" data-type="horizontal" data-inline="true"></div>
             </div>
-
-            <div id="SymptomsIcons">
-                <a href="#" id="icon00" class="btnSymptoms" data-role="button" data-corners="true" data-inline="true">
-                    <img src="icon.png">
-                </a>
-                <a href="#" id="icon01" class="btnSymptoms" data-role="button" data-corners="true" data-inline="true">
-                    ico 01
-                </a>
-                <a href="#" id="icon02" class="btnSymptoms" data-role="button" data-corners="true" data-inline="true">
-                    ico 02
-                </a>
-                <a href="#" id="icon03" class="btnSymptoms" data-role="button" data-corners="true" data-inline="true">
-                    ico 03
-                </a>
-            </div>
-    </div>
-</div>
-
-<!-- PainManagementFontBody-->
-<div data-role="page" id="PainManagementPageFrontBody" data-theme="a" class="bg">
-
-    <div data-role="content" class="bg">
-        Pain Management
-
-        <div id="front" class="frontAnatomy">
-
-            <a href="javascript:medical.setSelectedCircle('headCircle', 'FrontBody', 'headTopic')">
-                <div id="headCircle" class="headTopic circleDashed">
-                    <span class="topicLabel rotate">Head</span>
-                </div>
-            </a>
-
+    <div data-role="collapsible-set" data-inline="true">
+        <div data-role="collapsible" data-content-theme="c" data-collapsed="false" data-inline="true" id="needhelp" >
+           <h3>Need Help</h3>
+    <a href="#" id="breath" class="btnIAm_needhelp" data-corners="true" data-role="button" data-inline="true" >Short of Breath</a>
+    
+    <a href="#" id="gagging" class="btnIAm_needhelp" data-corners="true" data-role="button" data-inline="true" >Gagging</a>
+    
+    <a href="#" id="choking" class="btnIAm_needhelp" data-corners="true" data-role="button" data-inline="true" >Choking</a>
+    
+    <a href="#" id="breathingfast" class="btnIAm_needhelp" data-corners="true" data-role="button" data-inline="true" >Breathing Fast</a> 
         </div>
+        <div data-role="collapsible" data-content-theme="c" data-inline="true" id="discomfort">
+           <h3>Discomfort</h3>
+    <a href="#" id="hot" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Too Hot</a>
 
-        <div data-role="navbar" data-iconpos="top">
-            <ul>
-                <li>
-                    <a href="#page1" data-transition="slide" data-theme="" data-icon="">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#PainManagementPageFrontBody" data-transition="flip" data-theme="" data-icon="" class="ui-btn-active ui-state-persist">
-                        Font Body
-                    </a>
-                </li>
-                <li>
-                    <a href="#PainManagementPageBackBody" data-transition="flip" data-theme="" data-icon="">
-                        Back Body
-                    </a>
-                </li>
-                <li>
-                    <a href="#PainManagementPageSummary" data-transition="flip" data-theme="" data-icon="">
-                        Summary
-                    </a>
-                </li>
-            </ul>
+    <a href="#" id="cold" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Too Cold</a>
+     
+    <a href="#" id="dizzy" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Dizzy</a>
+    
+    <a href="#" id="nauseous" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Nauseous / Sick to Stomach</a>
+        
+    <a href="#" id="sweating" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Sweating</a>
+        
+    <a href="#" id="aching" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Aching</a>
+        
+    <a href="#" id="constipated" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Constipated</a>
+        
+    <a href="#" id="wet" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Wet</a>
+        
+    <a href="#" id="itchy" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Itchy</a>
+        
+    <a href="#" id="sore" class="btnIAm_discomfort" data-corners="true" data-role="button" data-inline="true" >Sore</a>
         </div>
+        <div data-role="collapsible" data-content-theme="c" data-inline="true" id="feeling">
+           <h3>Feeling</h3>
+    <a href="#" id="hungry" class="btnIAm_feeling" data-corners="true" data-role="button" data-inline="true" >Hungry</a>
 
+    <a href="#" id="thirsty" class="btnIAm_feeling" data-corners="true" data-role="button" data-inline="true" >Thirsty</a>
+    
+    <a href="#" id="weak" class="btnIAm_feeling" data-corners="true" data-role="button" data-inline="true" >Weak</a>
+        
+    <a href="#" id="tired" class="btnIAm_feeling" data-corners="true" data-role="button" data-inline="true" >Tired / Sleepy</a>
+        
+    <a href="#" id="nervous" class="btnIAm_feeling" data-corners="true" data-role="button" data-inline="true" >Nervous</a>
+        
+    <a href="#" id="lonely" class="btnIAm_feeling" data-corners="true" data-role="button" data-inline="true" >Lonely</a>
+        
+    <a href="#" id="sad" class="btnIAm_feeling" data-corners="true" data-role="button" data-inline="true" >Sad</a>
+        
+    <a href="#" id="mad" class="btnIAm_feeling" data-corners="true" data-role="button" data-inline="true" >Mad / Aggravated</a>
+        </div>
+    </div>            
+            
     </div>
+    <div data-theme="b" data-role="footer" data-position="inline">
+		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
+		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
+		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
+    </div>			
 </div>
 
 <!-- AddTopicDialog -->
@@ -542,8 +737,33 @@
     </div>
 </div>
 
+<!-- PainManagementFontBody-->
+<div data-role="page" id="PainManagementPageFrontBody" data-theme="b" class="bg">
+
+    <div data-role="content" class="bg">
+        Pain Management
+
+        <div id="front" class="frontAnatomy">
+
+            <a href="javascript:medical.setSelectedCircle('headCircle', 'FrontBody', 'headTopic')">
+                <div id="headCircle" class="headTopic circleDashed">
+                    <span class="topicLabel rotate">Head</span>
+                </div>
+            </a>
+
+        </div>
+
+        <div data-theme="b" data-role="footer" data-position="inline">
+            <a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
+            <h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
+            <a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
+        </div>
+
+    </div>
+</div>
+
 <!-- PainManagementBackBody-->
-<div data-role="page" id="PainManagementPageBackBody" data-theme="a" class="bg">
+<div data-role="page" id="PainManagementPageBackBody" data-theme="ab" class="bg">
 
     <div data-role="content" class="bg">
         Pain Management
@@ -558,136 +778,121 @@
 
         </div>
 
-        <div data-role="navbar" data-iconpos="top">
-            <ul>
-                <li>
-                    <a href="#page1" data-transition="slide" data-theme="" data-icon="">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#PainManagementPageFrontBody" data-transition="flip" data-theme="" data-icon="">
-                        Font Body
-                    </a>
-                </li>
-                <li>
-                    <a href="#PainManagementPageBackBody" data-transition="flip" data-theme="" data-icon="" class="ui-btn-active ui-state-persist">
-                        Back Body
-                    </a>
-                </li>
-                <li>
-                    <a href="#PainManagementPageSummary" data-transition="flip" data-theme="" data-icon="">
-                        Summary
-                    </a>
-                </li>
-            </ul>
+        <div data-theme="b" data-role="footer" data-position="inline">
+            <a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
+            <h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
+            <a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
         </div>
 
     </div>
 </div>
 
-<!-- PainManagementSummary-->
-<div data-role="page" id="PainManagementPageSummary" data-theme="a" class="bg">
 
+<!-- PainManagementSummary-->
+<div data-role="page" id="PainManagementPageSummary" data-theme="b" class="bg" data-add-back-btn="true">
+    <div data-theme="b" data-role="header">
+        <h3>
+            Commun-A-Care
+        </h3>
+    </div>
     <div data-role="content" class="bg">
-        Pain Management
+        Click front or back below
 
         <div id="PainManagementSummary">
-              summary here
-        </div>
+			<div id="main" class="ui-grid-a">
+				<div class="ui-block-a">
+				<a href="#PainManagementPageFrontBody" data-role="button" data-inline="true"><img src="img/logo.png" /></a>
+				<a href="#PainManagementPageBackBody" data-role="button" data-inline="true">
+				<img src="img/logo.png" />
+				</a>
+				</div>
+				<div class="ui-block-b">
+					<ul id="summaryItemCont" data-inline="true" data-role="listview" data-split-icon="delete" data-split-theme="b" >
 
-        <div data-role="navbar" data-iconpos="top">
-            <ul>
-                <li>
-                    <a href="#page1" data-transition="slide" data-theme="" data-icon="">
-                        Home
-                    </a>
-                </li>
-                <li>
-                    <a href="#PainManagementPageFrontBody" data-transition="flip" data-theme="" data-icon="">
-                        Font Body
-                    </a>
-                </li>
-                <li>
-                    <a href="#PainManagementPageBackBody" data-transition="flip" data-theme="" data-icon="">
-                        Back Body
-                    </a>
-                </li>
-                <li>
-                    <a href="#PainManagementPageSummary" data-transition="flip" data-theme="" data-icon="" class="ui-btn-active ui-state-persist">
-                        Summary
-                    </a>
-                </li>
-            </ul>
+                        <li>
+                            <div class="ui-grid-c">
+                                <div class="ui-block-a" style="width:15%; white-space:nowrap;">
+                                    <h3>Head<h3>
+                                </div>
+                                <div class="ui-block-b" style="width:20%;white-space:nowrap;">
+                                    <label id="painlevel">Pain Level: x</label><br>
+                                    <label id="painonset">Pain Onset: x</label>
+                                </div>
+                                <div class="ui-block-c" style="width:50%;">
+                                    <label id="paintype">Pain Type: what not</label><br>
+                                    <label id="painlevel">Aggravating Factor: what not</label><br>
+                                    <label id="painlevel">Alleviating Factor: what not</label>
+                                </div>
+                                <div class="ui-block-d">
+                                    <a href="#delete" data-role="button" data-icon="delete" data-iconpos="notext" data-rel="popup" data-position-to="window" data-transition="pop" data-mini="true">Delete</a>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+					<div data-role="popup" id="delete" data-theme="d" data-overlay-theme="b" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+						<h3>Delete?</h3>
+						<p>Click delete below if you would like to delete this pain item.</p>
+						<a href="index.html" data-role="button" data-rel="back" data-theme="b" data-icon="check" data-inline="true" data-mini="true">Delete</a>
+						<a href="index.html" data-role="button" data-rel="back" data-inline="true" data-mini="true">Cancel</a>	
+					</div>				
+				
+				</div>
+			</div>
         </div>
 
     </div>
+    <div data-theme="b" data-role="footer" data-position="inline">
+		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
+		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
+		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
+    </div>			
 </div>
 
 <!-- Keyboard -->
-<div data-role="page" id="KeyboardPage" data-theme="a" class="bg">
+<div data-role="page" id="KeyboardPage" data-theme="b" class="bg" data-add-back-btn="true">
+    <div data-theme="b" data-role="header">
+        <h3>
+            Commun-A-Care
+        </h3>
+				<a id="btnClearKeyboardText" data-role="button" data-icon="delete" class="ui-btn-right">
+					<span id="ClearText" >Clear</span>
+				</a>		
+    </div>
     <div data-role="content">
         <div  data-role="fieldcontain">
-            <textarea  id="txtKeyboard" placeholder="" rows="5" cols="10"></textarea>
+            <textarea  id="txtKeyboard" placeholder="" rows="2" cols="10"></textarea>
         </div>
-
-
-        <div class="ui-block-a">
-            <a id="btnClearKeyboardText" data-role="button">
-                <span id="ClearText">Clear</span>
-            </a>
-        </div>
-
-        <div data-theme="a" data-role="footer" data-position="fixed">
-
-            <div data-role="navbar" data-iconpos="left">
-                <ul>
-                    <li>
-                        <a href="#page1" data-transition="slide" data-theme="" data-icon="home">
-
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-
     </div>
+    <div data-theme="b" data-role="footer" data-position="inline">
+		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
+		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
+		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
+    </div>			
 </div>
 
 <!-- Sketch board -->
-<div data-role="page" id="SketchBoardPage" data-theme="a" class="bg">
+<div data-role="page" id="SketchBoardPage" data-theme="b" class="bg" data-add-back-btn="true">
+    <div data-theme="b" data-role="header">
+				<h3>
+					Commun-A-Care
+				</h3>
+				<a id="btnReset" data-role="button" data-icon="delete" class="ui-btn-right">
+					<span id="Reset" >Clear Board</span>
+				</a>
+	</div>
     <div data-role="content">
-
         <div id="canvasContainer" >
             <canvas id="signature" height="600"/>
         </div>
-
-        <div class="ui-block-a">
-            <a id="btnReset" data-role="button">
-                <span id="Reset">Reset</span>
-            </a>
-        </div>
-
-        <div data-theme="a" data-role="footer" data-position="fixed">
-
-            <div data-role="navbar" data-iconpos="left">
-                <ul>
-                    <li>
-                        <a href="#page1" data-transition="slide" data-theme="" data-icon="home">
-
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-
     </div>
+    <div data-theme="b" data-role="footer" data-position="inline">
+		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
+		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
+		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
+    </div>			
 </div>
-
 
 <audio id="soundHandle" style="display: none;" />
 
@@ -710,7 +915,7 @@
             medical.TopicCategories[0].AddTopic( new Topic("headTopic") );
 
             medical.TopicCategories[1]  = new TopicCategory( "BackBody", "blah" );
-            medical.TopicCategories[1].AddTopic( new Topic("upperBackTopic") );
+            medical.TopicCategories[1].AddTopic( new Topic("headTopic") );
 
             //---------------------- Init button count bubbles  ------------
             medical.updateBubbleCount( $("#bubbleINeed"), 0 );
@@ -760,25 +965,79 @@
             });
 
             //icon buttons with css class btnINeed assigned to them
-            $( document ).on( "click", ".btnINeed", function( event, ui ) {
+            $( document ).on( "click", ".btnINeed_comfort", function( event, ui ) {
                 console.log("I need icon clicked");
 
-                medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup"), $("#INeedIcons") );
+                medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup"), $("#comfort > .ui-collapsible-content") );
+
+                var bubbleCount = $("#INeedControlGroup > .ui-controlgroup-controls").children().length;
+                medical.updateBubbleCount( $("#bubbleINeed"), bubbleCount );
+            });
+			
+            $( document ).on( "click", ".btnINeed_bodyposition", function( event, ui ) {
+                console.log("I need icon clicked");
+
+                medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup"), $("#bodyposition > .ui-collapsible-content") );
 
                 var bubbleCount = $("#INeedControlGroup > .ui-controlgroup-controls").children().length;
                 medical.updateBubbleCount( $("#bubbleINeed"), bubbleCount );
             });
 
-            //icon buttons with css class btnSymptoms assigned to them
-            $( document ).on( "click", ".btnSymptoms", function( event, ui ) {
+            $( document ).on( "click", ".btnINeed_questions", function( event, ui ) {
+                console.log("I need icon clicked");
+
+                medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup"), $("#questions > .ui-collapsible-content") );
+
+                var bubbleCount = $("#INeedControlGroup > .ui-controlgroup-controls").children().length;
+                medical.updateBubbleCount( $("#bubbleINeed"), bubbleCount );
+            });
+			
+			$( document ).on( "click", ".btnINeed_actions", function( event, ui ) {
+                console.log("I need icon clicked");
+
+                medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup"), $("#actions > .ui-collapsible-content") );
+
+                var bubbleCount = $("#INeedControlGroup > .ui-controlgroup-controls").children().length;
+                medical.updateBubbleCount( $("#bubbleINeed"), bubbleCount );
+            });
+			
+            $( document ).on( "click", ".btnINeed_people", function( event, ui ) {
+                console.log("I need icon clicked");
+
+                medical.moveToControlGroup(event.currentTarget, $("#INeedControlGroup"), $("#people > .ui-collapsible-content") );
+
+                var bubbleCount = $("#INeedControlGroup > .ui-controlgroup-controls").children().length;
+                medical.updateBubbleCount( $("#bubbleINeed"), bubbleCount );
+            });			
+			
+            //icon buttons with css class btnIAm assigned to them
+            $( document ).on( "click", ".btnIAm_needhelp", function( event, ui ) {
                 console.log("Symptoms icon clicked");
 
-                medical.moveToControlGroup(event.currentTarget, $("#SymptomsControlGroup"), $("#SymptomsIcons") );
-
+                medical.moveToControlGroup(event.currentTarget, $("#SymptomsControlGroup"), $("#needhelp > .ui-collapsible-content") );
+				
                 var bubbleCount = $("#SymptomsControlGroup > .ui-controlgroup-controls").children().length;
                 medical.updateBubbleCount( $("#bubbleSymptoms"), bubbleCount );
             });
+			
+            $( document ).on( "click", ".btnIAm_discomfort", function( event, ui ) {
+                console.log("Symptoms icon clicked");
 
+                medical.moveToControlGroup(event.currentTarget, $("#SymptomsControlGroup"), $("#discomfort > .ui-collapsible-content") );
+				
+                var bubbleCount = $("#SymptomsControlGroup > .ui-controlgroup-controls").children().length;
+                medical.updateBubbleCount( $("#bubbleSymptoms"), bubbleCount );
+            });			
+
+            $( document ).on( "click", ".btnIAm_feeling", function( event, ui ) {
+                console.log("Symptoms icon clicked");
+
+                medical.moveToControlGroup(event.currentTarget, $("#SymptomsControlGroup"), $("#feeling > .ui-collapsible-content") );
+				
+                var bubbleCount = $("#SymptomsControlGroup > .ui-controlgroup-controls").children().length;
+                medical.updateBubbleCount( $("#bubbleSymptoms"), bubbleCount );
+            });				
+			
             //Specific buttons
             $( document ).on( "click", "#btnReset", function( event, ui ) {
                 medical.clearSketch();
@@ -787,6 +1046,7 @@
             $( document ).on( "click", "#btnClearKeyboardText", function( event, ui ) {
                 medical.clearKeyboardText();
             });
+
 
         },
 
@@ -923,7 +1183,8 @@
                         });
                     });
 
-                    $('#PainManagementSummary').html( allPainTopics );
+                    $('#summaryItemCont').html( allPainTopics );
+                    $('#summaryItemCont').listview( "refresh" );
 
                     //close the dialog
                     //$('#addPainTopic').dialog('close');
@@ -932,7 +1193,6 @@
                     $.mobile.navigate( "#PainManagementPageSummary" );
 
                 }
-
             }
 
             //update bubble count on main menu button for pain management
@@ -941,9 +1201,56 @@
         },
 
         formatTopicOutput: function( topic ){
+
             var result = "";
+            /*
             result += "<p></p>TopicName:" + topic.TopicId;
             result += "<p></p>PainLevel:" + topic.metaData.painLevel;
+            */
+
+
+            result += '<li>'
+                    + '<div class="ui-grid-c">'
+                        + '<div class="ui-block-a" style="width:15%; white-space:nowrap;">'
+                            + '<h3>'+ topic.TopicId +'<h3>'
+                        + '</div>'
+                        + '<div class="ui-block-b" style="width:20%;white-space:nowrap;">'
+                            + '<label>Pain Level:' + topic.metaData.painLevel + '</label><br>'
+                            + '<label>Pain Onset: x</label>'
+                        + '</div>'
+                        + '<div class="ui-block-c" style="width:50%;">'
+                            + '<label>Pain Type: what not</label><br>'
+                            + '<label>Aggravating Factor: what not</label><br>'
+                            + '<label">Alleviating Factor: what not</label>'
+                        + '</div>'
+                        + '<div class="ui-block-d">'
+                            + '<a href="#delete" data-role="button" data-icon="delete" data-iconpos="notext" data-rel="popup" data-position-to="window" data-transition="pop" data-mini="true">Delete</a>'
+                        + '</div>'
+                    + '</div>'
+                    + '</li>';
+
+
+            /*
+             <li>
+                 <div class="ui-grid-c">
+                     <div class="ui-block-a" style="width:15%; white-space:nowrap;">
+                        <h3>Head<h3>
+                     </div>
+                     <div class="ui-block-b" style="width:20%;white-space:nowrap;">
+                        <label id="painlevel">Pain Level: x</label><br>
+                        <label id="painonset">Pain Onset: x</label>
+                     </div>
+                     <div class="ui-block-c" style="width:50%;">
+                         <label id="paintype">Pain Type: what not</label><br>
+                         <label id="painlevel">Aggravating Factor: what not</label><br>
+                         <label id="painlevel">Alleviating Factor: what not</label>
+                     </div>
+                     <div class="ui-block-d">
+                        <a href="#delete" data-role="button" data-icon="delete" data-iconpos="notext" data-rel="popup" data-position-to="window" data-transition="pop" data-mini="true">Delete</a>
+                     </div>
+                 </div>
+             </li>
+            */
 
             return result;
         },
