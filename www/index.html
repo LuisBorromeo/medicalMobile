@@ -553,7 +553,7 @@
             </div>
             
     </div>
-    <div data-theme="b" data-role="footer" data-position="inline">
+    <div data-theme="b" data-role="footer" data-position="fixed">
 		<a href="#page1" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-left">Home</a>
 		<h3 style="margin-top:10px; text-align:center;">4 Life Apps, LLC</h3>
 		<a href="mailto:4lifeapps@gmail.com" class="ui-btn-right" style="margin-top:2px;">4lifeapps@gmail.com</a>
@@ -633,7 +633,7 @@
 </div>
 
 <!-- AddTopicDialog -->
-<div data-role="dialog" id="addPainTopic" data-theme="a">
+<div data-role="dialog" id="addPainTopic" data-theme="b">
     <div data-role="content">
         <form id="addTopicForm">
             <div data-role="fieldcontain">
@@ -1143,6 +1143,10 @@
             }
 
             //update bubble count on main menu button for pain management
+            medical.refreshPainSummaryBubbleCount();
+        },
+
+        refreshPainSummaryBubbleCount: function(){
             var allCategoriesCount = medical.allCategoriesCount();
             medical.updateBubbleCount( $("#bubblePainManagement"), allCategoriesCount );
         },
@@ -1206,6 +1210,9 @@
 
             //refresh the grid
             medical.refreshSummaryGrid();
+
+            //refresh bubblecount
+            medical.refreshPainSummaryBubbleCount();
 
         },
 
